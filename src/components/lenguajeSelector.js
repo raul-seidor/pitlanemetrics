@@ -1,8 +1,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { MenuItem, Select } from "@mui/material";
 
 function LenguajeSelector() {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation("global");
 
   const lang = localStorage.getItem("lang") || "es";
 
@@ -12,10 +13,30 @@ function LenguajeSelector() {
   };
 
   return (
-    <select value={lang} onChange={(e) => changeLanguage(e.target.value)}>
-      <option value="es">{t("es")}</option>
-      <option value="en">{t("en")}</option>
-    </select>
+    <Select
+      sx={{
+        color: "white",
+        border: "none",
+        "& .MuiOutlinedInput-notchedOutline": {
+          border: "none",
+        },
+        "&:hover .MuiOutlinedInput-notchedOutline": {
+          border: "none",
+        },
+        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+          border: "none",
+        },
+        "& .MuiSvgIcon-root": {
+          color: "white",
+        },
+      }}
+      value={lang}
+      onChange={(e) => changeLanguage(e.target.value)}
+      label={t("language")}
+    >
+      <MenuItem value="es">{t("es")}</MenuItem>
+      <MenuItem value="en">{t("en")}</MenuItem>
+    </Select>
   );
 }
 
