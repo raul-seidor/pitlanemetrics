@@ -14,6 +14,8 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 
 import LenguajeSelector from "../lenguajeSelector";
+import LoginButton from "../common/loginButton";
+import LogoutButton from "../common/logoutButton";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -129,6 +131,8 @@ function Header() {
 
           <Box sx={{ flexGrow: 0 }}>
             <LenguajeSelector />
+            <LoginButton />
+            <LogoutButton />
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
