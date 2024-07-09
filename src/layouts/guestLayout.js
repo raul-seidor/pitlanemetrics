@@ -1,19 +1,20 @@
 import React from "react";
 import { Outlet } from 'react-router-dom';
-import Header from "../components/layout/header";
+import GuestHeader from "../components/layout/guestHeader";
 import Footer from "../components/layout/footer";
 import "../assets/styles/layout.scss";
 
-const Layout = () => {
+const GuestLayout = () => {
   return (
     <div className="layout-container">
-      <Header />
+      <GuestHeader />
+      <h1>No Auth</h1>
       <main className="main-content">
-        < Outlet />
+        <Outlet />
       </main>
       <Footer />
     </div>
   );
 };
 
-export default Layout;
+export default GuestLayout;

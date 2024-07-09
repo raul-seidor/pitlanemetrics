@@ -10,6 +10,11 @@ import global_es from "./assets/i18n/es.json";
 import global_en from "./assets/i18n/en.json";
 import "./index.css";
 
+const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+
+console.log("domain", domain, "clientId", clientId);
+
 const lang = localStorage.getItem("lang") || "es";
 
 i18next.init({
@@ -28,8 +33,8 @@ i18next.init({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Auth0Provider
-    domain="dev-kiccl8m1houg5unh.us.auth0.com"
-    clientId="vEkd7BzwFfspnt4sP3lFth1wPdpEOFve"
+    domain={domain}
+    clientId={clientId}
     authorizationParams={{
       redirect_uri: window.location.origin,
     }}

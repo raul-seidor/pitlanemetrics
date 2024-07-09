@@ -7,74 +7,46 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import { useNavigate } from "react-router-dom";
 
 import LenguajeSelector from "../lenguajeSelector";
-import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "../common/loginButton";
 
 const pages = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
 ];
 
-const settings = [
-  { label: "Profile", path: "/profile" },
-  { label: "Logout", path: "/" },
-];
 
-function Header() {
+function GuestHeader() {
   const navigate = useNavigate();
-  const { logout } = useAuth0();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
-  const handleCloseNav = () => {
+  const handleClose = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUser = () => {
-    setAnchorElUser(null);
   };
 
   const handleCloseNavMenu = (path) => () => {
     navigate(path);
-    handleCloseNav();
+    handleClose();
   };
-
-  const handleCloseUserMenu = (path) => {
-    navigate(path);
-    handleCloseUser();
-  };
-
-  const { user, isLoading } = useAuth0();
-
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
 
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -112,7 +84,7 @@ function Header() {
                 horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNav}
+              onClose={handleClose}
               sx={{
                 display: { xs: "block", md: "none" },
               }}
@@ -127,19 +99,19 @@ function Header() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
-            noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            noWrap
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: ".3rem",
+              fontSize: "1rem",
+              letterSpacing: ".2rem",
               color: "inherit",
               textDecoration: "none",
             }}
@@ -159,54 +131,11 @@ function Header() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <LenguajeSelector />
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt={user.name} src={user.picture} />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUser}
-            >
-              {settings.map((setting) =>
-                setting.label === "Logout" ? (
-                  <MenuItem
-                    key={setting.label}
-                    onClick={() =>
-                      logout({
-                        logoutParams: { returnTo: window.location.origin },
-                      })
-                    }
-                  >
-                    <Typography textAlign="center">{setting.label}</Typography>
-                  </MenuItem>
-                ) : (
-                  <MenuItem
-                    key={setting.label}
-                    onClick={() => handleCloseUserMenu(setting.path)}
-                  >
-                    <Typography textAlign="center">{setting.label}</Typography>
-                  </MenuItem>
-                )
-              )}
-            </Menu>
+            <LoginButton />
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
-export default Header;
+export default GuestHeader;
