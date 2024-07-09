@@ -10,8 +10,6 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
-
-import LenguajeSelector from "../lenguajeSelector";
 import LoginButton from "../common/loginButton";
 
 const pages = [

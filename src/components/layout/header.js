@@ -12,10 +12,13 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { SvgIcon } from '@mui/material'; 
 import { useNavigate } from "react-router-dom";
 
 import LenguajeSelector from "../lenguajeSelector";
 import { useAuth0 } from "@auth0/auth0-react";
+
+import Logo from "../../assets/images/icons/f1.png";
 
 const pages = [
   { label: "Home", path: "/" },
@@ -69,7 +72,13 @@ function Header() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <img
+            src={Logo}
+            alt="logo"
+            width={30}
+            height={30}
+            style={{ marginRight: "10px" }}
+          />
           <Typography
             variant="h6"
             noWrap
