@@ -48,9 +48,14 @@ export default function StickyHeadTable({ columns, rows }) {
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((row, rowIndex) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.athlete.id}>
+                  <TableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={row.athlete?.id || row.team?.id || rowIndex}
+                  >
                     {columns.map((column) => {
                       const value = getValueFromNestedObject(row, column.id);
                       return (
