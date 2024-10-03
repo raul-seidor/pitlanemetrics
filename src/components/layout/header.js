@@ -12,16 +12,16 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { SvgIcon } from '@mui/material'; 
 import { useNavigate } from "react-router-dom";
 
-import LenguajeSelector from "../lenguajeSelector";
+import LenguajeSelector from "../common/lenguajeSelector";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import Logo from "../../assets/images/icons/f1.png";
 
 const pages = [
   { label: "Home", path: "/" },
+  { label: "Campeonatos", path: "/championships" },
   { label: "About", path: "/about" },
 ];
 
