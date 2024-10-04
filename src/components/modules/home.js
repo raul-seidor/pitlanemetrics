@@ -1,10 +1,11 @@
 import React from "react";
+import NewsComponent from "../common/news";
 
 function Home() {
   return (
     <div>
-      <h2>Home Page</h2>
-      <p>Welcome to the home page!</p>
+      <img src="/assets/images/deVries.jpg" alt="f1" />
+      <NewsComponent />
     </div>
   );
 }

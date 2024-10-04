@@ -17,8 +17,6 @@ import { useNavigate } from "react-router-dom";
 import LenguajeSelector from "../common/lenguajeSelector";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import Logo from "../../assets/images/icons/f1.png";
-
 const pages = [
   { label: "Home", path: "/" },
   { label: "Campeonatos", path: "/championships" },
@@ -73,7 +71,7 @@ function Header() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <img
-            src={Logo}
+            src="images/icons/f1.png"
             alt="logo"
             width={30}
             height={30}
