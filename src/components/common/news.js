@@ -112,22 +112,40 @@ export default function NewsComponent() {
       <Typography variant="h4" component="h2" gutterBottom>
         Últimas Noticias
       </Typography>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} style={{ maxWidth: "1100px", margin: "0 auto" }}>
         {displayedNews.map((item, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <Card sx={{ maxWidth: 345 }}>
-              <CardActionArea>
+            <Card sx={{ width: 300, height: 400 }}>
+              <CardActionArea sx={{ height: "100%" }}>
                 <CardMedia
                   component="img"
-                  height="140"
+                  height="200"
                   image={`images/${item.image}`}
                   alt={item.title}
+                  sx={{ objectFit: "cover" }}
                 />
-                <CardContent>
+                <CardContent
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    height: 200,
+                    maxHeight: 170,
+                  }}
+                >
                   <Typography gutterBottom variant="h5" component="div">
                     {item.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    noWrap
+                    sx={{
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
                     {item.description}
                   </Typography>
                   <Typography
