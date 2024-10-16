@@ -14,8 +14,10 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useNavigate } from "react-router-dom";
 
+import Loader from "../common/loader";
 import LenguajeSelector from "../common/lenguajeSelector";
 import { useAuth0 } from "@auth0/auth0-react";
+
 
 const pages = [
   { label: "Home", path: "/" },
@@ -63,7 +65,7 @@ function Header() {
   const { user, isLoading } = useAuth0();
 
   if (isLoading) {
-    return <div>Loading ...</div>;
+    return <Loader />;
   }
 
   return (

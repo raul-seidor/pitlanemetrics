@@ -12,11 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import LoginButton from "../common/loginButton";
 
-const pages = [
-  { label: "Home", path: "/" },
-  { label: "About", path: "/about" },
-];
-
+const pages = [{ label: "About", path: "/about" }];
 
 function GuestHeader() {
   const navigate = useNavigate();
@@ -40,6 +36,13 @@ function GuestHeader() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+          <img
+            src="images/icons/f1.png"
+            alt="logo"
+            width={30}
+            height={30}
+            style={{ marginRight: "10px" }}
+          />
           <Typography
             variant="h6"
             noWrap

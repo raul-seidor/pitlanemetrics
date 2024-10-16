@@ -9,6 +9,8 @@ import GuestLayout from "./layouts/guestLayout";
 import Layout from "./layouts/standarLayout";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PublicHome from "./components/modules/publicHome";
+import Loader from "./components/common/loader";
 
 function App() {
   const { t, i18n } = useTranslation("global");
@@ -16,7 +18,7 @@ function App() {
   const { isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
   return (
     <div className="App">
@@ -39,7 +41,8 @@ function App() {
           ) : (
             // Rutas para usuarios no autenticados
             <Route element={<GuestLayout />}>
-              <Route index element={<Home />} />
+              <Route index element={<PublicHome />} />
+              <Route path="about" element={<About />} />
             </Route>
           )}
         </Routes>

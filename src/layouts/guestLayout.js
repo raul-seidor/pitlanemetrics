@@ -8,8 +8,7 @@ const GuestLayout = () => {
   return (
     <div className="layout-container">
       <GuestHeader />
-      <h1>No Auth</h1>
-      <main className="main-content">
+      <main className="main-content-guest">
         <Outlet />
       </main>
       <Footer />

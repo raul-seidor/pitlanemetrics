@@ -6,7 +6,7 @@ const Footer = () => {
     <AppBar position="static" sx={{ top: 'auto', bottom: 0 }}>
       <Toolbar>
         <Typography variant="body1" component="div" sx={{ flexGrow: 1 }}>
-          &copy; {new Date().getFullYear()} My App
+          &copy; {new Date().getFullYear()} Pitlane Metrics
         </Typography>
       </Toolbar>
     </AppBar>

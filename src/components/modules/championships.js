@@ -5,6 +5,7 @@ import {
 } from "../../services/f1-motorsport-data";
 import StickyHeadTable from "../common/table";
 import BasicTabs from "../common/tabs";
+import Loader from "../common/loader";
 
 // MOCKS
 import driversChampionshipsMock from "../../assets/mocks/driversChampioship.json";
@@ -52,7 +53,7 @@ function Championships() {
   //   getDataControllers();
   // }, []);
 
-  // if (loading) return <div>Loading...</div>;
+  // if (loading) return <Loader />;
   // if (error) return <div>Error: {error}</div>;
 
   const columnsDrivers = [
