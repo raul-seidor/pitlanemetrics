@@ -10,6 +10,8 @@ import global_es from "./assets/i18n/es.json";
 import global_en from "./assets/i18n/en.json";
 import "./index.css";
 
+import { ThemeProvider } from "./contexts/themeContexts";
+
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
@@ -41,7 +43,9 @@ root.render(
   >
     <React.StrictMode>
       <I18nextProvider i18n={i18next}>
-        <App />
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
       </I18nextProvider>
     </React.StrictMode>
   </Auth0Provider>

@@ -6,6 +6,8 @@ import {
   Box,
   Grid,
   Typography,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 
 const validatePhone = (phone) => {
@@ -43,6 +45,9 @@ const ContactForm = () => {
   });
 
   const [isFormValid, setIsFormValid] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
   useEffect(() => {
     const allFieldsFilled = Object.values(formValues).every(
@@ -68,10 +73,19 @@ const ContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormValid) {
+      setSnackbarMessage("Formulario enviado con éxito.");
+      setSnackbarSeverity("success");
+      setSnackbarOpen(true);
       console.log("Form submitted:", formValues);
     } else {
-      console.log("Form has errors.");
+      setSnackbarMessage("Por favor, corrige los errores en el formulario.");
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
     }
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
   };
 
   return (
@@ -182,12 +196,27 @@ const ContactForm = () => {
             variant="contained"
             color="primary"
             fullWidth
-            disabled={!isFormValid}
           >
             Submit
           </Button>
         </Grid>
       </Grid>
+
+      {/* Snackbar for notifications */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert
+          onClose={handleSnackbarClose}
+          severity={snackbarSeverity}
+          sx={{ width: "100%" }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

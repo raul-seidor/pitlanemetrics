@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../common/loader";
 import LenguajeSelector from "../common/lenguajeSelector";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { useTheme } from "../../contexts/themeContexts";
 
 const pages = [
   { label: "Home", path: "/" },
@@ -33,6 +33,7 @@ const settings = [
 function Header() {
   const navigate = useNavigate();
   const { logout } = useAuth0();
+  const { toggleTheme } = useTheme(); // Obtener la función para alternar tema
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -167,7 +168,16 @@ function Header() {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center" }}>
+            {/* Botón para alternar tema */}
+            <IconButton
+              onClick={toggleTheme}
+              color="inherit"
+              title="Toggle Theme"
+            >
+              <Typography variant="body2">🌙</Typography>{" "}
+              {/* Icono de luna como ejemplo */}
+            </IconButton>
             <LenguajeSelector />
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
