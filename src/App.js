@@ -11,49 +11,54 @@ import { useTranslation } from "react-i18next";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PublicHome from "./components/modules/publicHome";
 import Loader from "./components/common/loader";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: "'Titillium Web', sans-serif !important",
+  },
+});
 
 function App() {
   const { t, i18n } = useTranslation("global");
-
   const { isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
     return <Loader />;
   }
-  return (
-    <div className="App">
-      <Router>
-        <Routes>
-          {isAuthenticated ? (
-            <Route element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route path="about" element={<About />} />
-              <Route path="championships" element={<Championships />} />
-              <Route
-                path="profile"
-                element={
-                  <ProtectedRoute>
-                    <Profile />
-                  </ProtectedRoute>
-                }
-              />
-            </Route>
-          ) : (
-            // Rutas para usuarios no autenticados
-            <Route element={<GuestLayout />}>
-              <Route index element={<PublicHome />} />
-              <Route path="about" element={<About />} />
-            </Route>
-          )}
-        </Routes>
-      </Router>
-    </div>
 
-    // <Layout>
-    //   <div>
-    //     <h1>{t("hello")}</h1>
-    //   </div>
-    // </Layout>
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline /> {/* Restablece estilos base */}
+      <div className="App">
+        <Router>
+          <Routes>
+            {isAuthenticated ? (
+              <Route element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="about" element={<About />} />
+                <Route path="championships" element={<Championships />} />
+                <Route
+                  path="profile"
+                  element={
+                    <ProtectedRoute>
+                      <Profile />
+                    </ProtectedRoute>
+                  }
+                />
+              </Route>
+            ) : (
+              // Rutas para usuarios no autenticados
+              <Route element={<GuestLayout />}>
+                <Route index element={<PublicHome />} />
+                <Route path="about" element={<About />} />
+              </Route>
+            )}
+          </Routes>
+        </Router>
+      </div>
+    </ThemeProvider>
   );
 }
 

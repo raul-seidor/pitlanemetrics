@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Typography from "@mui/material/Typography";
 import {
   standingsDrivers,
   standingsControllers,
@@ -82,8 +83,25 @@ function Championships() {
   };
 
   return (
-    <div>
-      <h1>Championships:</h1>
+    <div style={{ padding: "20px" }}>
+      <Typography
+        variant="h4"
+        component="h2"
+        gutterBottom
+        sx={{ textAlign: "center", fontWeight: "bold", color: "#D32F2F" }}
+      >
+        Campeonatos de Fórmula 1
+      </Typography>
+      <Typography
+        variant="h6"
+        component="p"
+        gutterBottom
+        sx={{ textAlign: "center", marginBottom: "30px", color: "#555" }}
+      >
+        Aquí encontrarás las últimas estadísticas y posiciones en el campeonato
+        de constructores y pilotos de la temporada actual.
+      </Typography>
+
       <BasicTabs onTabChange={handleTabChange} />
       <StickyHeadTable columns={columns} rows={rows} />
     </div>

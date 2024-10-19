@@ -1,5 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { TextField, MenuItem, Button, Box, Grid } from '@mui/material';
+import React, { useState, useEffect } from "react";
+import {
+  TextField,
+  MenuItem,
+  Button,
+  Box,
+  Grid,
+  Typography,
+} from "@mui/material";
 
 const validatePhone = (phone) => {
   const phoneRegex = /^[0-9]{9}$/;
@@ -22,12 +29,12 @@ const validateDNI = (dni) => {
 
 const ContactForm = () => {
   const [formValues, setFormValues] = useState({
-    firstName: '',
-    lastName: '',
-    phone: '',
-    dni: '',
-    gender: '',
-    birthDate: '',
+    firstName: "",
+    lastName: "",
+    phone: "",
+    dni: "",
+    gender: "",
+    birthDate: "",
   });
 
   const [errors, setErrors] = useState({
@@ -38,7 +45,9 @@ const ContactForm = () => {
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
-    const allFieldsFilled = Object.values(formValues).every(value => value !== '');
+    const allFieldsFilled = Object.values(formValues).every(
+      (value) => value !== ""
+    );
     const noErrors = !errors.phone && !errors.dni;
     setIsFormValid(allFieldsFilled && noErrors);
   }, [formValues, errors]);
@@ -47,11 +56,11 @@ const ContactForm = () => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
 
-    if (name === 'phone') {
+    if (name === "phone") {
       setErrors({ ...errors, phone: !validatePhone(value) });
     }
 
-    if (name === 'dni') {
+    if (name === "dni") {
       setErrors({ ...errors, dni: !validateDNI(value) });
     }
   };
@@ -59,9 +68,9 @@ const ContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormValid) {
-      console.log('Form submitted:', formValues);
+      console.log("Form submitted:", formValues);
     } else {
-      console.log('Form has errors.');
+      console.log("Form has errors.");
     }
   };
 
@@ -71,9 +80,26 @@ const ContactForm = () => {
       onSubmit={handleSubmit}
       sx={{
         maxWidth: 800,
-        margin: 'auto',
+        margin: "auto",
       }}
     >
+      <Typography
+        variant="h4"
+        component="h2"
+        gutterBottom
+        sx={{ textAlign: "center", fontWeight: "bold", color: "#D32F2F" }}
+      >
+        Formulario de Contacto
+      </Typography>
+      <Typography
+        variant="h6"
+        component="p"
+        gutterBottom
+        sx={{ textAlign: "center", marginBottom: "20px", color: "#555" }}
+      >
+        Si desea ponerse en contacto con nosotros, por favor, rellene el
+        formulario a continuación.
+      </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -102,7 +128,7 @@ const ContactForm = () => {
             value={formValues.phone}
             onChange={handleChange}
             error={errors.phone}
-            helperText={errors.phone ? 'Phone must have 9 digits' : ''}
+            helperText={errors.phone ? "Phone must have 9 digits" : ""}
             fullWidth
             required
           />
@@ -114,7 +140,9 @@ const ContactForm = () => {
             value={formValues.dni}
             onChange={handleChange}
             error={errors.dni}
-            helperText={errors.dni ? 'Invalid DNI. Check number and letter.' : ''}
+            helperText={
+              errors.dni ? "Invalid DNI. Check number and letter." : ""
+            }
             fullWidth
             required
           />
@@ -149,11 +177,11 @@ const ContactForm = () => {
           />
         </Grid>
         <Grid item xs={12}>
-          <Button 
-            type="submit" 
-            variant="contained" 
-            color="primary" 
-            fullWidth 
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
             disabled={!isFormValid}
           >
             Submit

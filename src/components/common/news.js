@@ -108,11 +108,33 @@ export default function NewsComponent() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Typography variant="h4" component="h2" gutterBottom>
-        Últimas Noticias
+    <Box sx={{ flexGrow: 1, padding: "20px" }}>
+      {/* Título y descripción llamativos */}
+      <Typography
+        variant="h4"
+        component="h2"
+        gutterBottom
+        sx={{ textAlign: "center", fontWeight: "bold", color: "#D32F2F" }}
+      >
+        Últimas Noticias de Fórmula 1
       </Typography>
-      <Grid container spacing={3} style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      <Typography
+        variant="h6"
+        component="p"
+        gutterBottom
+        sx={{ textAlign: "center", marginBottom: "30px", color: "#555" }}
+      >
+        Mantente al día con las noticias más recientes sobre la Fórmula 1. Desde
+        victorias históricas hasta las últimas actualizaciones de los equipos,
+        ¡aquí te lo contamos todo!
+      </Typography>
+
+      {/* Tarjetas de noticias */}
+      <Grid
+        container
+        spacing={3}
+        style={{ maxWidth: "1100px", margin: "0 auto" }}
+      >
         {displayedNews.map((item, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <Card sx={{ width: 300, height: 400 }}>
@@ -122,28 +144,35 @@ export default function NewsComponent() {
                   height="200"
                   image={`images/${item.image}`}
                   alt={item.title}
-                  sx={{ objectFit: "cover" }}
+                  sx={{ objectFit: "cover"}}
                 />
                 <CardContent
                   sx={{
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
-                    height: 200,
-                    maxHeight: 170,
+                    height: "200px",
+                    padding: "16px",
                   }}
                 >
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{ marginBottom: "8px" }}
+                  >
                     {item.title}
                   </Typography>
                   <Typography
                     variant="body2"
                     color="text.secondary"
-                    noWrap
                     sx={{
-                      whiteSpace: "nowrap",
+                      height: "40px",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
                     }}
                   >
                     {item.description}
@@ -153,6 +182,7 @@ export default function NewsComponent() {
                     display="block"
                     color="text.secondary"
                     align="right"
+                    sx={{ marginTop: "auto" }}
                   >
                     {item.date}
                   </Typography>
@@ -162,6 +192,8 @@ export default function NewsComponent() {
           </Grid>
         ))}
       </Grid>
+
+      {/* Paginación */}
       <Pagination
         count={Math.ceil(news.length / itemsPerPage)}
         page={page}
