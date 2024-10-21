@@ -63,6 +63,11 @@ function Header() {
     handleCloseUser();
   };
 
+  const logoutHandler = () => {
+    sessionStorage.clear();
+    logout({ logoutParams: { returnTo: window.location.origin } });
+  };
+
   const { user, isLoading } = useAuth0();
 
   if (isLoading) {
@@ -202,14 +207,7 @@ function Header() {
             >
               {settings.map((setting) =>
                 setting.label === "Logout" ? (
-                  <MenuItem
-                    key={setting.label}
-                    onClick={() =>
-                      logout({
-                        logoutParams: { returnTo: window.location.origin },
-                      })
-                    }
-                  >
+                  <MenuItem key={setting.label} onClick={logoutHandler}>
                     <Typography textAlign="center">{setting.label}</Typography>
                   </MenuItem>
                 ) : (

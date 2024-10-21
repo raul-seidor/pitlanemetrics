@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   TextField,
   MenuItem,
@@ -48,6 +48,14 @@ const ContactForm = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+
+  const firstNameRef = useRef(null);
+
+  useEffect(() => {
+    if (firstNameRef.current) {
+      firstNameRef.current.focus();
+    }
+  }, []);
 
   useEffect(() => {
     const allFieldsFilled = Object.values(formValues).every(
@@ -117,6 +125,7 @@ const ContactForm = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <TextField
+            inputRef={firstNameRef}  // Se establece la referencia en este campo
             label="First Name"
             name="firstName"
             value={formValues.firstName}

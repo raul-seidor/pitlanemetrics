@@ -1,5 +1,5 @@
-import React, { useReducer } from "react";
-import { TextField, Button, Box, Grid, Typography } from "@mui/material";
+import React, { useReducer, useEffect } from "react";
+import { TextField, Button, Box, Grid } from "@mui/material";
 
 // Estado inicial del formulario
 const initialState = {
@@ -22,6 +22,11 @@ const reducer = (state, action) => {
         ...state,
         errors: action.errors,
       };
+    case "SET_INITIAL_DATA":
+      return {
+        ...state,
+        ...action.payload,
+      };
     case "RESET":
       return initialState;
     default:
@@ -39,8 +44,14 @@ const validateForm = (state) => {
   return errors;
 };
 
-const ProfileForm = () => {
+const ProfileForm = ({ initialData, onCancel, onSave }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    if (initialData) {
+      dispatch({ type: "SET_INITIAL_DATA", payload: initialData });
+    }
+  }, [initialData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,8 +59,8 @@ const ProfileForm = () => {
     if (Object.keys(errors).length > 0) {
       dispatch({ type: "SET_ERRORS", errors });
     } else {
-      alert("Perfil actualizado con éxito");
-      dispatch({ type: "RESET" });
+      sessionStorage.setItem("userProfile", JSON.stringify(state));
+      onSave(state);
     }
   };
 
@@ -70,14 +81,6 @@ const ProfileForm = () => {
         margin: "auto",
       }}
     >
-      <Typography
-        variant="h4"
-        component="h2"
-        gutterBottom
-        sx={{ textAlign: "center", fontWeight: "bold", color: "#D32F2F" }}
-      >
-        Editar Perfil
-      </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <TextField
@@ -115,7 +118,17 @@ const ProfileForm = () => {
             helperText={state.errors.nickname}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={6}>
+          <Button
+            variant="outlined"
+            color="secondary"
+            fullWidth
+            onClick={onCancel}
+          >
+            Cancelar
+          </Button>
+        </Grid>
+        <Grid item xs={6}>
           <Button type="submit" variant="contained" color="primary" fullWidth>
             Guardar Cambios
           </Button>
