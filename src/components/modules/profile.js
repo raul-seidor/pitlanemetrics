@@ -60,7 +60,13 @@ const Profile = () => {
   return (
     isAuthenticated && (
       <Container maxWidth="lg">
-        <Grid container spacing={4} sx={{ marginTop: 4 }}>
+        <Grid
+          container
+          spacing={4}
+          sx={{
+            marginTop: { xs: 0, md: 4 },
+          }}
+        >
           <Grid item xs={12} md={6}>
             <Paper elevation={3} sx={{ padding: 3, height: "100%" }}>
               <Box

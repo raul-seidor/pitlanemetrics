@@ -20,6 +20,8 @@ import LenguajeSelector from "../common/lenguajeSelector";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useTheme } from "../../contexts/themeContexts";
 import { useTranslation } from "react-i18next";
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 
 const pages = [
@@ -38,7 +40,7 @@ function Header() {
   const { t } = useTranslation("global");
   const navigate = useNavigate();
   const { user, isLoading, logout } = useAuth0();
-  const { toggleTheme } = useTheme(); // Obtener la función para alternar tema
+  const { theme, toggleTheme } = useTheme(); // Obtener la función para alternar tema
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -145,25 +147,7 @@ function Header() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            PITLANE METRICS
-          </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
@@ -182,7 +166,7 @@ function Header() {
               color="inherit"
               title="Toggle Theme"
             >
-              <Typography variant="body2">🌙</Typography>{" "}
+              {theme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
             </IconButton>
             <LenguajeSelector />
             <Tooltip title="Open settings">

@@ -120,7 +120,7 @@ const ProfileForm = ({ initialData, onCancel, onSave }) => {
             helperText={state.errors.nickname}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6} >
           <Button
             variant="outlined"
             color="secondary"
@@ -130,7 +130,7 @@ const ProfileForm = ({ initialData, onCancel, onSave }) => {
             {t("profileBtnCancel")}
           </Button>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6} >
           <Button type="submit" variant="contained" color="primary" fullWidth>
             {t("profileFormSubmitBtn")}
           </Button>
