@@ -17,6 +17,7 @@ import {
 } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useTheme } from "./contexts/themeContexts";
+import Drivers from "./components/modules/drivers";
 
 const App = () => {
   const { t, i18n } = useTranslation("global");
@@ -54,8 +55,9 @@ const InnerApp = ({ isAuthenticated }) => {
           {isAuthenticated ? (
             <Route element={<Layout />}>
               <Route index element={<Home />} />
-              <Route path="about" element={<About />} />
               <Route path="championships" element={<Championships />} />
+              <Route path="drivers" element={<Drivers />} />
+              <Route path="about" element={<About />} />
               <Route
                 path="profile"
                 element={

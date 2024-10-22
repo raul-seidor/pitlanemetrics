@@ -22,17 +22,18 @@ import { useTheme } from "../../contexts/themeContexts";
 const pages = [
   { label: "Inicio", path: "/" },
   { label: "Campeonatos", path: "/championships" },
+  { label: "Pilotos", path: "/drivers" },
   { label: "Sobre Nosotros", path: "/about" },
 ];
 
 const settings = [
   { label: "Perfil", path: "/profile" },
-  { label: "Cerrar sesión", path: "/" },
+  { label: "Logout", path: "/" },
 ];
 
 function Header() {
   const navigate = useNavigate();
-  const { logout } = useAuth0();
+  const { user, isLoading, logout } = useAuth0();
   const { toggleTheme } = useTheme(); // Obtener la función para alternar tema
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -67,8 +68,6 @@ function Header() {
     sessionStorage.clear();
     logout({ logoutParams: { returnTo: window.location.origin } });
   };
-
-  const { user, isLoading } = useAuth0();
 
   if (isLoading) {
     return <Loader />;
