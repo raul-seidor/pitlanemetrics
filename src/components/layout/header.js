@@ -20,14 +20,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useTheme } from "../../contexts/themeContexts";
 
 const pages = [
-  { label: "Home", path: "/" },
+  { label: "Inicio", path: "/" },
   { label: "Campeonatos", path: "/championships" },
-  { label: "About", path: "/about" },
+  { label: "Sobre Nosotros", path: "/about" },
 ];
 
 const settings = [
-  { label: "Profile", path: "/profile" },
-  { label: "Logout", path: "/" },
+  { label: "Perfil", path: "/profile" },
+  { label: "Cerrar sesión", path: "/" },
 ];
 
 function Header() {
