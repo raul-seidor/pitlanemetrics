@@ -20,7 +20,6 @@ export const standingsDrivers = async (queryParams) => {
 
     return await response.json();
   } catch (error) {
-    console.error("Error fetching data:", error);
     throw error;
   }
 };
@@ -43,7 +42,6 @@ export const standingsControllers = async (queryParams) => {
 
     return await response.json();
   } catch (error) {
-    console.error("Error fetching data:", error);
     throw error;
   }
 };

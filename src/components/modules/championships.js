@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import {
   standingsDrivers,
   standingsControllers,
@@ -17,19 +19,19 @@ function Championships() {
   const [controllersChampionships, setControllersChampionships] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
   const [selectedTab, setSelectedTab] = useState(0);
 
   // useEffect(() => {
   //   const getDataDrivers = async () => {
   //     try {
   //       const currentYear = new Date().getFullYear();
-  //       const queryParams = {
-  //         year: currentYear,
-  //       };
+  //       const queryParams = { year: currentYear };
   //       const result = await standingsDrivers(queryParams);
   //       setDriversChampionships(result.standings.entries);
   //     } catch (error) {
-  //       setError(error.message);
+  //       setError("Ha ocurrido un error al intentar obtener los datos.");
+  //       setOpenSnackbar(true);
   //     } finally {
   //       setLoading(false);
   //     }
@@ -38,13 +40,12 @@ function Championships() {
   //   const getDataControllers = async () => {
   //     try {
   //       const currentYear = new Date().getFullYear();
-  //       const queryParams = {
-  //         year: currentYear,
-  //       };
+  //       const queryParams = { year: currentYear };
   //       const result = await standingsControllers(queryParams);
   //       setControllersChampionships(result.standings.entries);
   //     } catch (error) {
-  //       setError(error.message);
+  //       setError("Ha ocurrido un error al intentar obtener los datos.");
+  //       setOpenSnackbar(true);
   //     } finally {
   //       setLoading(false);
   //     }
@@ -55,7 +56,6 @@ function Championships() {
   // }, []);
 
   // if (loading) return <Loader />;
-  // if (error) return <div>Error: {error}</div>;
 
   const columnsDrivers = [
     { id: "stats[0].displayValue", label: "Posición", minWidth: 170 },
@@ -73,6 +73,7 @@ function Championships() {
   const columns = selectedTab === 0 ? columnsDrivers : columnsControllers;
   // const rows =
   //   selectedTab === 0 ? driversChampionships : controllersChampionships;
+
   // MOCK
   const rowsDrivers = driversChampionshipsMock.standings.entries;
   const rowsControllers = controllersChampionshipsMock.standings.entries;
@@ -80,6 +81,13 @@ function Championships() {
 
   const handleTabChange = (newValue) => {
     setSelectedTab(newValue);
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenSnackbar(false);
   };
 
   return (
@@ -104,6 +112,20 @@ function Championships() {
 
       <BasicTabs onTabChange={handleTabChange} />
       <StickyHeadTable columns={columns} rows={rows} />
+
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          {error || "Ocurrió un error desconocido."}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
