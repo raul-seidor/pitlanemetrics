@@ -4,7 +4,7 @@ import { driversInfo } from "../../services/open-f1-data";
 import DriverCard from "../common/driverCard";
 import Grid from "@mui/material/Grid";
 import { useCookies } from "react-cookie";
-import { Alert, Snackbar, Button } from "@mui/material";
+import { Alert, Snackbar } from "@mui/material";
 
 const Drivers = () => {
   const [loading, setLoading] = useState(true);
