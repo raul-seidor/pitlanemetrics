@@ -29,7 +29,7 @@ export default function DriverCard({
       />
       <CardContent>
         <Box display="flex" justifyContent="space-between" alignItems="center">
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" component="div" textAlign={"left"}>
             {nombre}{" "}
             <span style={{ fontSize: "0.9rem", color: "#888" }}>#{numero}</span>
           </Typography>

@@ -9,6 +9,7 @@ import {
   Pagination,
   Box,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const news = [
   {
@@ -98,6 +99,7 @@ const news = [
 ];
 
 export default function NewsComponent() {
+  const { t } = useTranslation("global");
   const [page, setPage] = useState(1);
   const itemsPerPage = 6;
   const handleChange = (event, value) => setPage(value);
@@ -109,14 +111,13 @@ export default function NewsComponent() {
 
   return (
     <Box sx={{ flexGrow: 1, padding: "20px" }}>
-      {/* Título y descripción llamativos */}
       <Typography
         variant="h4"
         component="h2"
         gutterBottom
         sx={{ textAlign: "center", fontWeight: "bold", color: "#D32F2F" }}
       >
-        Últimas Noticias de Fórmula 1
+        {t("newsTitle")}
       </Typography>
       <Typography
         variant="h6"
@@ -124,12 +125,9 @@ export default function NewsComponent() {
         gutterBottom
         sx={{ textAlign: "center", marginBottom: "30px", color: "#555" }}
       >
-        Mantente al día con las noticias más recientes sobre la Fórmula 1. Desde
-        victorias históricas hasta las últimas actualizaciones de los equipos,
-        ¡aquí te lo contamos todo!
+        {t("newsDescription")}
       </Typography>
 
-      {/* Tarjetas de noticias */}
       <Grid
         container
         spacing={3}
@@ -144,7 +142,7 @@ export default function NewsComponent() {
                   height="200"
                   image={`images/${item.image}`}
                   alt={item.title}
-                  sx={{ objectFit: "cover"}}
+                  sx={{ objectFit: "cover" }}
                 />
                 <CardContent
                   sx={{
@@ -193,7 +191,6 @@ export default function NewsComponent() {
         ))}
       </Grid>
 
-      {/* Paginación */}
       <Pagination
         count={Math.ceil(news.length / itemsPerPage)}
         page={page}

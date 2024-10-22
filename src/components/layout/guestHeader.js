@@ -11,10 +11,12 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import LoginButton from "../common/loginButton";
+import { useTranslation } from "react-i18next";
 
-const pages = [{ label: "About", path: "/about" }];
+const pages = [{ label: "about", path: "/about" }];
 
 function GuestHeader() {
+  const { t } = useTranslation("global");
   const navigate = useNavigate();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -95,7 +97,7 @@ function GuestHeader() {
                   key={page.label}
                   onClick={handleCloseNavMenu(page.path)}
                 >
-                  <Typography textAlign="center">{page.label}</Typography>
+                  <Typography textAlign="center">{t(page.label)}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -126,7 +128,7 @@ function GuestHeader() {
                 onClick={handleCloseNavMenu(page.path)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page.label}
+                {t(page.label)}
               </Button>
             ))}
           </Box>

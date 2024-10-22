@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect } from "react";
 import { TextField, Button, Box, Grid } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 // Estado inicial del formulario
 const initialState = {
@@ -35,16 +36,17 @@ const reducer = (state, action) => {
 };
 
 // Función para validar los datos del formulario
-const validateForm = (state) => {
+const validateForm = (state , t) => {
   const errors = {};
-  if (!state.email.trim()) errors.email = "El email es requerido";
-  if (!/\S+@\S+\.\S+/.test(state.email)) errors.email = "El email no es válido";
-  if (!state.name.trim()) errors.name = "El nombre es requerido";
-  if (!state.nickname.trim()) errors.nickname = "El nickname es requerido";
+  if (!state.email.trim()) errors.email = t("emailErrorRequired");
+  if (!/\S+@\S+\.\S+/.test(state.email)) errors.email = t("emailErrorFormat");
+  if (!state.name.trim()) errors.name = t("nameErrorRequired");
+  if (!state.nickname.trim()) errors.nickname = t("nicknameErrorRequired");
   return errors;
 };
 
 const ProfileForm = ({ initialData, onCancel, onSave }) => {
+  const { t } = useTranslation("global");
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
@@ -55,7 +57,7 @@ const ProfileForm = ({ initialData, onCancel, onSave }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const errors = validateForm(state);
+    const errors = validateForm(state, t);
     if (Object.keys(errors).length > 0) {
       dispatch({ type: "SET_ERRORS", errors });
     } else {
@@ -84,7 +86,7 @@ const ProfileForm = ({ initialData, onCancel, onSave }) => {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <TextField
-            label="Email"
+            label={t("email")}
             name="email"
             value={state.email}
             onChange={handleChange}
@@ -96,7 +98,7 @@ const ProfileForm = ({ initialData, onCancel, onSave }) => {
         </Grid>
         <Grid item xs={12}>
           <TextField
-            label="Nombre"
+            label={t("name")}
             name="name"
             value={state.name}
             onChange={handleChange}
@@ -108,7 +110,7 @@ const ProfileForm = ({ initialData, onCancel, onSave }) => {
         </Grid>
         <Grid item xs={12}>
           <TextField
-            label="Nickname"
+            label={t("nickname")}
             name="nickname"
             value={state.nickname}
             onChange={handleChange}
@@ -125,12 +127,12 @@ const ProfileForm = ({ initialData, onCancel, onSave }) => {
             fullWidth
             onClick={onCancel}
           >
-            Cancelar
+            {t("profileBtnCancel")}
           </Button>
         </Grid>
         <Grid item xs={6}>
           <Button type="submit" variant="contained" color="primary" fullWidth>
-            Guardar Cambios
+            {t("profileFormSubmitBtn")}
           </Button>
         </Grid>
       </Grid>

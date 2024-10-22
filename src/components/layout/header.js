@@ -1,37 +1,41 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
+import React from "react";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  Container,
+  Avatar,
+  Button,
+  Tooltip,
+  MenuItem,
+  Typography,
+  Menu,
+} from "@mui/material";
+import { Menu as MenuIcon, Adb as AdbIcon } from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import { useNavigate } from "react-router-dom";
 
 import Loader from "../common/loader";
 import LenguajeSelector from "../common/lenguajeSelector";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useTheme } from "../../contexts/themeContexts";
+import { useTranslation } from "react-i18next";
+
 
 const pages = [
-  { label: "Inicio", path: "/" },
-  { label: "Campeonatos", path: "/championships" },
-  { label: "Pilotos", path: "/drivers" },
-  { label: "Sobre Nosotros", path: "/about" },
+  { label: "home", path: "/" },
+  { label: "championships", path: "/championships" },
+  { label: "drivers", path: "/drivers" },
+  { label: "about", path: "/about" },
 ];
 
 const settings = [
-  { label: "Perfil", path: "/profile" },
-  { label: "Logout", path: "/" },
+  { label: "profile", path: "/profile" },
+  { label: "logout", path: "/" },
 ];
 
 function Header() {
+  const { t } = useTranslation("global");
   const navigate = useNavigate();
   const { user, isLoading, logout } = useAuth0();
   const { toggleTheme } = useTheme(); // Obtener la función para alternar tema
@@ -136,7 +140,7 @@ function Header() {
                   key={page.label}
                   onClick={handleCloseNavMenu(page.path)}
                 >
-                  <Typography textAlign="center">{page.label}</Typography>
+                  <Typography textAlign="center">{t(page.label)}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -167,20 +171,18 @@ function Header() {
                 onClick={handleCloseNavMenu(page.path)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page.label}
+                {t(page.label)}
               </Button>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center" }}>
-            {/* Botón para alternar tema */}
             <IconButton
               onClick={toggleTheme}
               color="inherit"
               title="Toggle Theme"
             >
               <Typography variant="body2">🌙</Typography>{" "}
-              {/* Icono de luna como ejemplo */}
             </IconButton>
             <LenguajeSelector />
             <Tooltip title="Open settings">
@@ -205,16 +207,16 @@ function Header() {
               onClose={handleCloseUser}
             >
               {settings.map((setting) =>
-                setting.label === "Logout" ? (
+                setting.label === "logout" ? (
                   <MenuItem key={setting.label} onClick={logoutHandler}>
-                    <Typography textAlign="center">{setting.label}</Typography>
+                    <Typography textAlign="center">{t(setting.label)}</Typography>
                   </MenuItem>
                 ) : (
                   <MenuItem
                     key={setting.label}
                     onClick={() => handleCloseUserMenu(setting.path)}
                   >
-                    <Typography textAlign="center">{setting.label}</Typography>
+                    <Typography textAlign="center">{t(setting.label)}</Typography>
                   </MenuItem>
                 )
               )}

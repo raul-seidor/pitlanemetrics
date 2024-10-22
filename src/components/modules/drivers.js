@@ -4,9 +4,11 @@ import { driversInfo } from "../../services/open-f1-data";
 import DriverCard from "../common/driverCard";
 import Grid from "@mui/material/Grid";
 import { useCookies } from "react-cookie";
-import { Alert, Snackbar } from "@mui/material";
+import { Alert, Snackbar, Typography, Box } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const Drivers = () => {
+  const { t } = useTranslation("global");
   const [loading, setLoading] = useState(true);
   const [drivers, setDrivers] = useState([]);
   const [cookies, setCookie, removeCookie] = useCookies(["favouriteDriver"]);
@@ -54,7 +56,25 @@ const Drivers = () => {
 
   return (
     <div>
-      <h2>Drivers:</h2>
+      <Box sx={{ textAlign: "center", marginBottom: 4 }}>
+        <Typography
+          variant="h4"
+          component="h2"
+          gutterBottom
+          sx={{ textAlign: "center", fontWeight: "bold", color: "#D32F2F" }}
+        >
+          {t("driversTitle")}
+        </Typography>
+        <Typography
+          variant="h6"
+          component="p"
+          gutterBottom
+          sx={{ textAlign: "center", marginBottom: "30px", color: "#555" }}
+        >
+          {t("driversDescription")}
+        </Typography>
+      </Box>
+
       <Grid container spacing={2} sx={{ paddingX: "60px" }}>
         {drivers.map((driver, index) => (
           <Grid
@@ -84,6 +104,7 @@ const Drivers = () => {
         ))}
       </Grid>
 
+      {/* Snackbar para notificaciones */}
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={6000}

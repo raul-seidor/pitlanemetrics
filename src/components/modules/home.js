@@ -1,8 +1,10 @@
 import React from "react";
 import NewsComponent from "../common/news";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function Home() {
+  const { t } = useTranslation("global");
   const navigate = useNavigate();
 
   const sectionStyle = {
@@ -43,21 +45,11 @@ function Home() {
   return (
     <div>
       <section style={sectionStyle}>
-        <h2 style={titleStyle}>Bienvenido a la Fórmula 1</h2>
-        <p style={paragraphStyle}>
-          La Fórmula 1 es la categoría de automovilismo más prestigiosa y
-          seguida en el mundo. Con una historia que se remonta a 1950, cuenta
-          con los autos más rápidos y avanzados tecnológicamente, compitiendo en
-          algunos de los circuitos más icónicos del planeta.
-        </p>
-        <p style={paragraphStyle}>
-          Cada temporada está llena de emociones con equipos legendarios como
-          Ferrari, Mercedes y Red Bull, y pilotos que desafían los límites de la
-          velocidad y la habilidad. Mantente al tanto de las últimas noticias y
-          eventos de la F1 aquí.
-        </p>
+        <h2 style={titleStyle}>{t("homeTitle")}</h2>
+        <p style={paragraphStyle}>{t("homeText1")}</p>
+        <p style={paragraphStyle}>{t("homeText2")}</p>
         <p style={linkStyle} onClick={() => navigate("/about")}>
-          Conoce más sobre nosotros.
+          {t("homeLinkAbout")}
         </p>
       </section>
       <NewsComponent />

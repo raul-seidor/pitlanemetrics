@@ -32,7 +32,6 @@ function LenguajeSelector() {
       }}
       value={lang}
       onChange={(e) => changeLanguage(e.target.value)}
-      label={t("language")}
     >
       <MenuItem value="es">{t("es")}</MenuItem>
       <MenuItem value="en">{t("en")}</MenuItem>

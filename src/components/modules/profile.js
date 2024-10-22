@@ -13,8 +13,10 @@ import Loader from "../common/loader";
 import ProfileForm from "../common/profileForm";
 import { useCookies } from "react-cookie";
 import DriverCard from "../common/driverCard";
+import { useTranslation } from "react-i18next";
 
 const Profile = () => {
+  const { t } = useTranslation("global");
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState(() => {
@@ -60,12 +62,14 @@ const Profile = () => {
       <Container maxWidth="lg">
         <Grid container spacing={4} sx={{ marginTop: 4 }}>
           <Grid item xs={12} md={6}>
-            <Paper elevation={3} sx={{ padding: 3 }}>
+            <Paper elevation={3} sx={{ padding: 3, height: "100%" }}>
               <Box
                 sx={{
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
+                  justifyContent: "center",
+                  height: "100%", // Asegúrate de que el contenedor ocupe el 100% de la altura
                 }}
               >
                 <Avatar
@@ -108,7 +112,7 @@ const Profile = () => {
                       onClick={handleEditClick}
                       sx={{ marginTop: 2 }}
                     >
-                      Editar
+                      {t("profileBtnEdit")}
                     </Button>
                   </>
                 )}
@@ -118,10 +122,9 @@ const Profile = () => {
 
           {cookies.favouriteDriver && (
             <Grid item xs={12} md={6}>
-              <Paper elevation={3} sx={{ padding: 3 }}>
+              <Paper elevation={3} sx={{ padding: 3, height: "100%" }}>
                 <Typography variant="h6" sx={{ marginBottom: 4 }} gutterBottom>
-                  ¡Este es tu piloto favorito! Un conductor excepcional que
-                  siempre da lo mejor en cada carrera.
+                  {t("favouriteDriverTitle")}
                 </Typography>
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
                   <DriverCard
@@ -139,8 +142,9 @@ const Profile = () => {
                   align="center"
                   sx={{ marginTop: 2 }}
                 >
-                  ¡Sigue apoyando a {cookies.favouriteDriver.full_name} y
-                  disfruta de cada carrera con él al frente!
+                  {t("favouriteDriverText1")}
+                  {cookies.favouriteDriver.full_name}
+                  {t("favouriteDriverText2")}
                 </Typography>
               </Paper>
             </Grid>

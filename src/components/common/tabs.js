@@ -2,6 +2,7 @@ import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import { useTranslation } from "react-i18next";
 
 function a11yProps(index) {
   return {
@@ -11,6 +12,7 @@ function a11yProps(index) {
 }
 
 export default function BasicTabs({ onTabChange }) {
+  const { t } = useTranslation("global");
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -21,13 +23,9 @@ export default function BasicTabs({ onTabChange }) {
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="tabs"
-        >
-          <Tab label="Pilotos" {...a11yProps(0)} />
-          <Tab label="Constructores" {...a11yProps(1)} />
+        <Tabs value={value} onChange={handleChange} aria-label="tabs">
+          <Tab label={t("tabDrivers")} {...a11yProps(0)} />
+          <Tab label={t("tabConstructors")} {...a11yProps(1)} />
         </Tabs>
       </Box>
     </Box>

@@ -9,6 +9,7 @@ import {
   Snackbar,
   Alert,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const validatePhone = (phone) => {
   const phoneRegex = /^[0-9]{9}$/;
@@ -30,6 +31,7 @@ const validateDNI = (dni) => {
 };
 
 const ContactForm = () => {
+  const { t } = useTranslation("global");
   const [formValues, setFormValues] = useState({
     firstName: "",
     lastName: "",
@@ -81,12 +83,12 @@ const ContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormValid) {
-      setSnackbarMessage("Formulario enviado con éxito.");
+      setSnackbarMessage(t("contactFormSuccessMessage"));
       setSnackbarSeverity("success");
       setSnackbarOpen(true);
       console.log("Form submitted:", formValues);
     } else {
-      setSnackbarMessage("Por favor, corrige los errores en el formulario.");
+      setSnackbarMessage(t("contactFormErrorMessage"));
       setSnackbarSeverity("error");
       setSnackbarOpen(true);
     }
@@ -111,7 +113,7 @@ const ContactForm = () => {
         gutterBottom
         sx={{ textAlign: "center", fontWeight: "bold", color: "#D32F2F" }}
       >
-        Formulario de Contacto
+        {t("contactFormTitle")}
       </Typography>
       <Typography
         variant="h6"
@@ -119,14 +121,13 @@ const ContactForm = () => {
         gutterBottom
         sx={{ textAlign: "center", marginBottom: "20px", color: "#555" }}
       >
-        Si desea ponerse en contacto con nosotros, por favor, rellene el
-        formulario a continuación.
+        {t("contactFormDescription")}
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <TextField
-            inputRef={firstNameRef}  // Se establece la referencia en este campo
-            label="First Name"
+            inputRef={firstNameRef} // Se establece la referencia en este campo
+            label={t("firstName")}
             name="firstName"
             value={formValues.firstName}
             onChange={handleChange}
@@ -136,7 +137,7 @@ const ContactForm = () => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            label="Last Name"
+            label={t("lastName")}
             name="lastName"
             value={formValues.lastName}
             onChange={handleChange}
@@ -146,26 +147,24 @@ const ContactForm = () => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            label="Phone"
+            label={t("phone")}
             name="phone"
             value={formValues.phone}
             onChange={handleChange}
             error={errors.phone}
-            helperText={errors.phone ? "Phone must have 9 digits" : ""}
+            helperText={errors.phone ? t("phoneError") : ""}
             fullWidth
             required
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            label="DNI"
+            label={t("dni")}
             name="dni"
             value={formValues.dni}
             onChange={handleChange}
             error={errors.dni}
-            helperText={
-              errors.dni ? "Invalid DNI. Check number and letter." : ""
-            }
+            helperText={errors.dni ? t("dniError") : ""}
             fullWidth
             required
           />
@@ -173,21 +172,21 @@ const ContactForm = () => {
         <Grid item xs={12} sm={6}>
           <TextField
             select
-            label="Gender"
+            label={t("gender")}
             name="gender"
             value={formValues.gender}
             onChange={handleChange}
             fullWidth
             required
           >
-            <MenuItem value="male">Male</MenuItem>
-            <MenuItem value="female">Female</MenuItem>
-            <MenuItem value="other">Other</MenuItem>
+            <MenuItem value="male">{t("male")}</MenuItem>
+            <MenuItem value="female">{t("female")}</MenuItem>
+            <MenuItem value="other">{t("other")}</MenuItem>
           </TextField>
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            label="Birth Date"
+            label={t("birthdate")}
             name="birthDate"
             type="date"
             value={formValues.birthDate}
@@ -200,18 +199,12 @@ const ContactForm = () => {
           />
         </Grid>
         <Grid item xs={12}>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-          >
-            Submit
+          <Button type="submit" variant="contained" color="primary" fullWidth>
+            {t("contactFormSubmitBtn")}
           </Button>
         </Grid>
       </Grid>
 
-      {/* Snackbar for notifications */}
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={6000}

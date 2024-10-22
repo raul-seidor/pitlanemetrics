@@ -9,12 +9,14 @@ import {
 import StickyHeadTable from "../common/table";
 import BasicTabs from "../common/tabs";
 import Loader from "../common/loader";
+import { useTranslation } from "react-i18next";
 
 // MOCKS
 import driversChampionshipsMock from "../../assets/mocks/driversChampioship.json";
 import controllersChampionshipsMock from "../../assets/mocks/controllersChampioship.json";
 
 function Championships() {
+  const { t } = useTranslation("global");
   const [driversChampionships, setDriversChampionships] = useState([]);
   const [controllersChampionships, setControllersChampionships] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -58,16 +60,16 @@ function Championships() {
   // if (loading) return <Loader />;
 
   const columnsDrivers = [
-    { id: "stats[0].displayValue", label: "Posición", minWidth: 170 },
-    { id: "athlete.displayName", label: "Piloto", minWidth: 100 },
-    { id: "stats[1].displayValue", label: "Puntos", minWidth: 170 },
-    { id: "athlete.flag.alt", label: "País", minWidth: 170 },
+    { id: "stats[0].displayValue", label: t("tablePosition"), minWidth: 170 },
+    { id: "athlete.displayName", label: t("tableDriver"), minWidth: 100 },
+    { id: "stats[1].displayValue", label: t("tablePoints"), minWidth: 170 },
+    { id: "athlete.flag.alt", label: t("tableCountry"), minWidth: 170 },
   ];
 
   const columnsControllers = [
-    { id: "stats[0].displayValue", label: "Posición", minWidth: 170 },
-    { id: "team.displayName", label: "Equipo", minWidth: 100 },
-    { id: "stats[1].displayValue", label: "Puntos", minWidth: 170 },
+    { id: "stats[0].displayValue", label: t("tablePosition"), minWidth: 170 },
+    { id: "team.displayName", label: t("tableTeam"), minWidth: 100 },
+    { id: "stats[1].displayValue", label: t("tablePoints"), minWidth: 170 },
   ];
 
   const columns = selectedTab === 0 ? columnsDrivers : columnsControllers;
@@ -91,14 +93,14 @@ function Championships() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ paddingX: "20px" }}>
       <Typography
         variant="h4"
         component="h2"
         gutterBottom
         sx={{ textAlign: "center", fontWeight: "bold", color: "#D32F2F" }}
       >
-        Campeonatos de Fórmula 1
+        {t("championshipsTitle")}
       </Typography>
       <Typography
         variant="h6"
@@ -106,8 +108,7 @@ function Championships() {
         gutterBottom
         sx={{ textAlign: "center", marginBottom: "30px", color: "#555" }}
       >
-        Aquí encontrarás las últimas estadísticas y posiciones en el campeonato
-        de constructores y pilotos de la temporada actual.
+        {t("championshipsDescription")}
       </Typography>
 
       <BasicTabs onTabChange={handleTabChange} />

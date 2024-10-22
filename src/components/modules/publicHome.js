@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Typography, Box } from "@mui/material";
 import { styled } from "@mui/system";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useTranslation } from "react-i18next";
 
 const Root = styled("div")({
   height: "90vh",
@@ -29,6 +30,7 @@ const ContentBox = styled(Box)({
 });
 
 const PublicHome = () => {
+  const { t } = useTranslation("global");
   const { loginWithRedirect } = useAuth0();
   return (
     <Root>
@@ -39,7 +41,7 @@ const PublicHome = () => {
           gutterBottom
           sx={{ color: "#fff" }}
         >
-          Bienvenido a Pitlane Metrics
+          {t("publicHomeTitle")}
         </Typography>
         <Typography
           variant="h6"
@@ -47,7 +49,7 @@ const PublicHome = () => {
           gutterBottom
           sx={{ color: "#fff" }}
         >
-          ¡Únete para vivir la experiencia completa!
+          {t("publicHomeSubtitle")}
         </Typography>
         <Typography
           variant="body1"
@@ -55,8 +57,7 @@ const PublicHome = () => {
           gutterBottom
           sx={{ color: "#fff" }}
         >
-          Regístrate para tener acceso a las últimas noticias, resultados, y
-          mucho más.
+          {t("publicHomeDescription")}
         </Typography>
         <Button
           onClick={() => loginWithRedirect()}
@@ -69,7 +70,7 @@ const PublicHome = () => {
             fontSize: "1rem",
           }}
         >
-          Regístrate Ahora
+          {t("publicHomeRegisterBtn")}
         </Button>
       </ContentBox>
     </Root>
