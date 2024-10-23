@@ -53,7 +53,7 @@ function GuestHeader() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            onClick={() => handleClick("/")}
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -62,6 +62,7 @@ function GuestHeader() {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              cursor: "pointer",
             }}
           >
             PITLANE METRICS
