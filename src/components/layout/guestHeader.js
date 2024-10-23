@@ -33,9 +33,12 @@ function GuestHeader() {
     navigate(path);
     handleClose();
   };
+  const handleClick = (path) => {
+    navigate(path);
+  };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ zIndex: 999 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <img
@@ -43,7 +46,8 @@ function GuestHeader() {
             alt="logo"
             width={30}
             height={30}
-            style={{ marginRight: "10px" }}
+            style={{ marginRight: "10px", cursor: "pointer" }}
+            onClick={() => handleClick("/")}
           />
           <Typography
             variant="h6"

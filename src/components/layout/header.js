@@ -20,9 +20,8 @@ import LenguajeSelector from "../common/lenguajeSelector";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useTheme } from "../../contexts/themeContexts";
 import { useTranslation } from "react-i18next";
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 const pages = [
   { label: "home", path: "/" },
@@ -70,6 +69,10 @@ function Header() {
     handleCloseUser();
   };
 
+  const handleClick = (path) => {
+    navigate(path);
+  };
+
   const logoutHandler = () => {
     sessionStorage.clear();
     logout({ logoutParams: { returnTo: window.location.origin } });
@@ -88,7 +91,8 @@ function Header() {
             alt="logo"
             width={30}
             height={30}
-            style={{ marginRight: "10px" }}
+            style={{ marginRight: "10px", cursor: "pointer" }}
+            onClick={() => handleClick("/")}
           />
           <Typography
             variant="h6"
@@ -166,7 +170,7 @@ function Header() {
               color="inherit"
               title="Toggle Theme"
             >
-              {theme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+              {theme === "light" ? <DarkModeIcon /> : <LightModeIcon />}
             </IconButton>
             <LenguajeSelector />
             <Tooltip title="Open settings">
@@ -193,14 +197,18 @@ function Header() {
               {settings.map((setting) =>
                 setting.label === "logout" ? (
                   <MenuItem key={setting.label} onClick={logoutHandler}>
-                    <Typography textAlign="center">{t(setting.label)}</Typography>
+                    <Typography textAlign="center">
+                      {t(setting.label)}
+                    </Typography>
                   </MenuItem>
                 ) : (
                   <MenuItem
                     key={setting.label}
                     onClick={() => handleCloseUserMenu(setting.path)}
                   >
-                    <Typography textAlign="center">{t(setting.label)}</Typography>
+                    <Typography textAlign="center">
+                      {t(setting.label)}
+                    </Typography>
                   </MenuItem>
                 )
               )}
