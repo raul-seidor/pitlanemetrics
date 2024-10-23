@@ -7,7 +7,6 @@ import Championships from "./components/modules/championships";
 import Profile from "./components/modules/profile";
 import GuestLayout from "./layouts/guestLayout";
 import Layout from "./layouts/standarLayout";
-import { useTranslation } from "react-i18next";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PublicHome from "./components/modules/publicHome";
 import Loader from "./components/common/loader";
@@ -20,7 +19,6 @@ import { useTheme } from "./contexts/themeContexts";
 import Drivers from "./components/modules/drivers";
 
 const App = () => {
-  const { t, i18n } = useTranslation("global");
   const { isAuthenticated, isLoading } = useAuth0();
   const { theme } = useTheme();
 
