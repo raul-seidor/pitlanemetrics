@@ -110,7 +110,7 @@ export default function NewsComponent() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1, padding: "20px" }}>
+    <Box sx={{ flexGrow: 1, padding: { md: "20px" } }}>
       <Typography
         variant="h4"
         component="h2"
@@ -134,8 +134,15 @@ export default function NewsComponent() {
         style={{ maxWidth: "1100px", margin: "0 auto" }}
       >
         {displayedNews.map((item, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <Card sx={{ width: 300, height: 400 }}>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            key={index}
+            sx={{ padding: "44px" }}
+          >
+            <Card sx={{ width: { xs: "100%", sm: 300 }, height: 400 }}>
               <CardActionArea sx={{ height: "100%" }}>
                 <CardMedia
                   component="img"
