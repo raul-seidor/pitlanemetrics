@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/pitlanemetrics/static/css/main.c7ccd8fd.css",
+    "main.js": "/pitlanemetrics/static/js/main.fbf13436.js",
+    "static/js/453.f2ba6053.chunk.js": "/pitlanemetrics/static/js/453.f2ba6053.chunk.js",
+    "index.html": "/pitlanemetrics/index.html",
+    "main.c7ccd8fd.css.map": "/pitlanemetrics/static/css/main.c7ccd8fd.css.map",
+    "main.fbf13436.js.map": "/pitlanemetrics/static/js/main.fbf13436.js.map",
+    "453.f2ba6053.chunk.js.map": "/pitlanemetrics/static/js/453.f2ba6053.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c7ccd8fd.css",
+    "static/js/main.fbf13436.js"
+  ]
+}
