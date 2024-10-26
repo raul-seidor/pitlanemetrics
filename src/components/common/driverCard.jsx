@@ -19,7 +19,7 @@ export default function DriverCard({
   isFavourite,
 }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: { xs: "100%", md: 345 } }}>
       <CardMedia
         component="img"
         height="140"
@@ -29,7 +29,12 @@ export default function DriverCard({
       />
       <CardContent>
         <Box display="flex" justifyContent="space-between" alignItems="center">
-          <Typography gutterBottom variant="h5" component="div" textAlign={"left"}>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            textAlign={"left"}
+          >
             {nombre}{" "}
             <span style={{ fontSize: "0.9rem", color: "#888" }}>#{numero}</span>
           </Typography>

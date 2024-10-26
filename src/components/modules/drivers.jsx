@@ -75,7 +75,7 @@ const Drivers = () => {
         </Typography>
       </Box>
 
-      <Grid container spacing={2} sx={{ paddingX: "60px" }}>
+      <Grid container spacing={2} sx={{ paddingX: { md: "60px" } }}>
         {drivers.map((driver, index) => (
           <Grid
             item
@@ -84,7 +84,6 @@ const Drivers = () => {
             md={4}
             lg={3}
             key={index}
-            sx={{ padding: "10px" }}
           >
             <DriverCard
               img={driver.headshot_url}
