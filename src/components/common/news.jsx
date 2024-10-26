@@ -140,7 +140,7 @@ export default function NewsComponent() {
             sm={6}
             md={4}
             key={index}
-            sx={{ padding: "44px" }}
+            sx={{ padding: { xs: "44px" } }}
           >
             <Card sx={{ width: { xs: "100%", sm: 300 }, height: 400 }}>
               <CardActionArea sx={{ height: "100%" }}>
