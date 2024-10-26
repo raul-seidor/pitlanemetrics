@@ -5,7 +5,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useTranslation } from "react-i18next";
 
 const Root = styled("div")({
-  height: "90vh",
   backgroundImage: `url('images/wallpaper.jpg')`,
   backgroundColor: "rgba(0, 0, 0, 0.6)",
   backgroundBlendMode: "darken",

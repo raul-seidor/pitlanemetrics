@@ -11,7 +11,7 @@ import {
   Typography,
   Menu,
 } from "@mui/material";
-import { Menu as MenuIcon, Adb as AdbIcon } from "@mui/icons-material";
+import { Menu as MenuIcon } from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
 
