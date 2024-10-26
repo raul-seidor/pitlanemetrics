@@ -12,8 +12,8 @@ import Loader from "../common/loader";
 import { useTranslation } from "react-i18next";
 
 // MOCKS
-import driversChampionshipsMock from "../../assets/mocks/driversChampioship.json";
-import controllersChampionshipsMock from "../../assets/mocks/controllersChampioship.json";
+// import driversChampionshipsMock from "../../assets/mocks/driversChampioship.json";
+// import controllersChampionshipsMock from "../../assets/mocks/controllersChampioship.json";
 
 function Championships() {
   const { t } = useTranslation("global");
@@ -24,40 +24,40 @@ function Championships() {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [selectedTab, setSelectedTab] = useState(0);
 
-  // useEffect(() => {
-  //   const getDataDrivers = async () => {
-  //     try {
-  //       const currentYear = new Date().getFullYear();
-  //       const queryParams = { year: currentYear };
-  //       const result = await standingsDrivers(queryParams);
-  //       setDriversChampionships(result.standings.entries);
-  //     } catch (error) {
-  //       setError("Ha ocurrido un error al intentar obtener los datos.");
-  //       setOpenSnackbar(true);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
+  useEffect(() => {
+    const getDataDrivers = async () => {
+      try {
+        const currentYear = new Date().getFullYear();
+        const queryParams = { year: currentYear };
+        const result = await standingsDrivers(queryParams);
+        setDriversChampionships(result.standings.entries);
+      } catch (error) {
+        setError("Ha ocurrido un error al intentar obtener los datos.");
+        setOpenSnackbar(true);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  //   const getDataControllers = async () => {
-  //     try {
-  //       const currentYear = new Date().getFullYear();
-  //       const queryParams = { year: currentYear };
-  //       const result = await standingsControllers(queryParams);
-  //       setControllersChampionships(result.standings.entries);
-  //     } catch (error) {
-  //       setError("Ha ocurrido un error al intentar obtener los datos.");
-  //       setOpenSnackbar(true);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
+    const getDataControllers = async () => {
+      try {
+        const currentYear = new Date().getFullYear();
+        const queryParams = { year: currentYear };
+        const result = await standingsControllers(queryParams);
+        setControllersChampionships(result.standings.entries);
+      } catch (error) {
+        setError("Ha ocurrido un error al intentar obtener los datos.");
+        setOpenSnackbar(true);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  //   getDataDrivers();
-  //   getDataControllers();
-  // }, []);
+    getDataDrivers();
+    getDataControllers();
+  }, []);
 
-  // if (loading) return <Loader />;
+  if (loading) return <Loader />;
 
   const columnsDrivers = [
     { id: "stats[0].displayValue", label: t("tablePosition"), minWidth: 170 },
@@ -73,13 +73,13 @@ function Championships() {
   ];
 
   const columns = selectedTab === 0 ? columnsDrivers : columnsControllers;
-  // const rows =
-  //   selectedTab === 0 ? driversChampionships : controllersChampionships;
+  const rows =
+    selectedTab === 0 ? driversChampionships : controllersChampionships;
 
   // MOCK
-  const rowsDrivers = driversChampionshipsMock.standings.entries;
-  const rowsControllers = controllersChampionshipsMock.standings.entries;
-  const rows = selectedTab === 0 ? rowsDrivers : rowsControllers;
+  // const rowsDrivers = driversChampionshipsMock.standings.entries;
+  // const rowsControllers = controllersChampionshipsMock.standings.entries;
+  // const rows = selectedTab === 0 ? rowsDrivers : rowsControllers;
 
   const handleTabChange = (newValue) => {
     setSelectedTab(newValue);
