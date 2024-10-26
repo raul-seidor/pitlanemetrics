@@ -133,6 +133,7 @@ const ContactForm = () => {
             onChange={handleChange}
             fullWidth
             required
+            inputProps={{ "data-testid": "firstName" }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -143,6 +144,7 @@ const ContactForm = () => {
             onChange={handleChange}
             fullWidth
             required
+            inputProps={{ "data-testid": "lastName" }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -155,6 +157,7 @@ const ContactForm = () => {
             helperText={errors.phone ? t("phoneError") : ""}
             fullWidth
             required
+            inputProps={{ "data-testid": "phone" }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -167,6 +170,7 @@ const ContactForm = () => {
             helperText={errors.dni ? t("dniError") : ""}
             fullWidth
             required
+            inputProps={{ "data-testid": "dni" }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -178,6 +182,7 @@ const ContactForm = () => {
             onChange={handleChange}
             fullWidth
             required
+            inputProps={{ "data-testid": "gender" }}
           >
             <MenuItem value="male">{t("male")}</MenuItem>
             <MenuItem value="female">{t("female")}</MenuItem>
@@ -196,6 +201,7 @@ const ContactForm = () => {
             }}
             fullWidth
             required
+            inputProps={{ "data-testid": "birthDate" }}
           />
         </Grid>
         <Grid item xs={12}>

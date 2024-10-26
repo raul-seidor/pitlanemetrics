@@ -66,6 +66,7 @@ const Profile = () => {
           sx={{
             marginTop: { xs: 0, md: 4 },
           }}
+          justifyContent="center"
         >
           <Grid item xs={12} md={6}>
             <Paper elevation={3} sx={{ padding: 3, height: "100%" }}>
@@ -75,7 +76,7 @@ const Profile = () => {
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
-                  height: "100%", // Asegúrate de que el contenedor ocupe el 100% de la altura
+                  height: "100%",
                 }}
               >
                 <Avatar

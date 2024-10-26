@@ -38,10 +38,12 @@ const reducer = (state, action) => {
 // Función para validar los datos del formulario
 const validateForm = (state , t) => {
   const errors = {};
-  if (!state.email.trim()) errors.email = t("emailErrorRequired");
   if (!/\S+@\S+\.\S+/.test(state.email)) errors.email = t("emailErrorFormat");
+  if (!state.email.trim()) errors.email = t("emailErrorRequired");
   if (!state.name.trim()) errors.name = t("nameErrorRequired");
-  if (!state.nickname.trim()) errors.nickname = t("nicknameErrorRequired");
+  if (!state.nickname.trim()) errors.nickname = t("nicknameErrorRequired");  
+  console.log(errors);
+  
   return errors;
 };
 
@@ -91,9 +93,9 @@ const ProfileForm = ({ initialData, onCancel, onSave }) => {
             value={state.email}
             onChange={handleChange}
             fullWidth
-            required
             error={!!state.errors.email}
             helperText={state.errors.email}
+            inputProps={{ "data-testid": "email" }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -103,9 +105,9 @@ const ProfileForm = ({ initialData, onCancel, onSave }) => {
             value={state.name}
             onChange={handleChange}
             fullWidth
-            required
             error={!!state.errors.name}
             helperText={state.errors.name}
+            inputProps={{ "data-testid": "name" }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -115,9 +117,9 @@ const ProfileForm = ({ initialData, onCancel, onSave }) => {
             value={state.nickname}
             onChange={handleChange}
             fullWidth
-            required
             error={!!state.errors.nickname}
             helperText={state.errors.nickname}
+            inputProps={{ "data-testid": "nickname" }}
           />
         </Grid>
         <Grid item xs={12} md={6} >
