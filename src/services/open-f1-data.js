@@ -8,7 +8,6 @@ export const driversInfo = async (queryParams) => {
     const response = await fetch(url, {
       method: "GET",
       headers: {
-        // "x-rapidapi-key": xRapidapiKey,
         "Content-Type": "application/json",
       },
     });
