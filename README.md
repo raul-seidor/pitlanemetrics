@@ -15,11 +15,10 @@ Pilane Metrics is an application developed in react 18.3.1
    git clone https://github.com/raul-seidor/pitlanemetrics.git
    ```
 
-3. **Install the project**:
+3. **Install the dependencies of the project**:
 
    ```bash
    npm i
-
    ```
 
 4. **Run the App**:
