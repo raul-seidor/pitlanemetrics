@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import GuestHeader from "../components/layout/guestHeader";
 import Footer from "../components/layout/footer";
-import "../assets/styles/layout.scss";
+import "../assets/styles/layout.css";
 
 /**
  * GuestLayout component.
