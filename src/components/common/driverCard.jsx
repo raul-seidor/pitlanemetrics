@@ -9,6 +9,18 @@ import { Box } from "@mui/system";
 
 const defaultImage = "images/user-avatar.png";
 
+/**
+ * Componente que representa una tarjeta de piloto con su imagen, nombre, numero, equipo y color del equipo.
+ * Ademas, permite marcar a un piloto como favorito con un boton de estrella.
+ *
+ * @prop {string} img - Imagen del piloto.
+ * @prop {string} nombre - Nombre del piloto.
+ * @prop {string} equipo - Nombre del equipo.
+ * @prop {string} colorEquipo - Color del equipo en formato hexadecimal.
+ * @prop {number} numero - Numero del piloto.
+ * @prop {function} onToggleFavourite - Funcion que se llama cuando se hace clic en el boton de favorito.
+ * @prop {boolean} isFavourite - Si el piloto es favorito o no.
+ */
 export default function DriverCard({
   img,
   nombre,

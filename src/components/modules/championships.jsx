@@ -15,6 +15,13 @@ import { useTranslation } from "react-i18next";
 // import driversChampionshipsMock from "../../assets/mocks/driversChampioship.json";
 // import controllersChampionshipsMock from "../../assets/mocks/controllersChampioship.json";
 
+/**
+ * Championships component
+ *
+ * Componente que renderiza la tabla de campeonatos de F1, tanto para pilotos como para constructores.
+ *
+ * @returns {JSX.Element} Componente JSX
+ */
 function Championships() {
   const { t } = useTranslation("global");
   const [driversChampionships, setDriversChampionships] = useState([]);

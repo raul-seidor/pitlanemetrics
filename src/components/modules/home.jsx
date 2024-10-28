@@ -3,6 +3,15 @@ import NewsComponent from "../common/news";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+/**
+ * Component that renders the homepage of the app.
+ *
+ * It shows a big background image with a title, a couple of paragraphs
+ * and a link to the about page. Under that, it shows the news component
+ * with the latest news.
+ *
+ * @returns {React.ReactElement} The component.
+ */
 function Home() {
   const { t } = useTranslation("global");
   const navigate = useNavigate();

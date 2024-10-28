@@ -15,24 +15,47 @@ import { useTranslation } from "react-i18next";
 
 const pages = [{ label: "about", path: "/about" }];
 
+/**
+ * GuestHeader
+ *
+ * Header component for guest users. It displays a logo, navigation menu items and a login button.
+ *
+ * @returns {JSX.Element} The header component
+ */
 function GuestHeader() {
   const { t } = useTranslation("global");
   const navigate = useNavigate();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
+  /**
+   * Handles the opening of the navigation menu. Sets the anchor element to the one that was clicked.
+   * @param {React.MouseEvent<HTMLElement>} event The event that triggered this function
+   */
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
 
+  /**
+   * Closes the navigation menu by setting the anchor element to null.
+   */
   const handleClose = () => {
     setAnchorElNav(null);
   };
 
+  /**
+   * Handles the closing of the navigation menu by navigating to the specified path
+   * @param {string} path The path to navigate to
+   * @returns {Function} A function that closes the menu and navigates to the path
+   */
   const handleCloseNavMenu = (path) => () => {
     navigate(path);
     handleClose();
   };
+  /**
+   * Handles the navigation to the specified path when a navigation menu item is clicked.
+   * @param {string} path The path to navigate to
+   */
   const handleClick = (path) => {
     navigate(path);
   };

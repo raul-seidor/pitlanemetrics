@@ -4,6 +4,12 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
 
+/**
+ * Generates the props needed for the Tab component to follow the
+ * WAI-ARIA specification.
+ * @param {number} index - The index of the tab.
+ * @returns {Object} An object with the id and aria-controls properties.
+ */
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
@@ -15,6 +21,11 @@ export default function BasicTabs({ onTabChange }) {
   const { t } = useTranslation("global");
   const [value, setValue] = React.useState(0);
 
+  /**
+   * Handles a change in the selected tab.
+   * @param {React.SyntheticEvent} event - The event that triggered the change.
+   * @param {number} newValue - The new value of the selected tab.
+   */
   const handleChange = (event, newValue) => {
     setValue(newValue);
     onTabChange(newValue);

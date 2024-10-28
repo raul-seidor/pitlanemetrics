@@ -15,6 +15,18 @@ import { useCookies } from "react-cookie";
 import DriverCard from "../common/driverCard";
 import { useTranslation } from "react-i18next";
 
+/**
+ * Componente que muestra la informaci n del perfil del usuario actual
+ * en la pantalla de inicio de la aplicaci n.
+ *
+ * El componente muestra un formulario para editar la informaci n
+ * del perfil del usuario, y un bot n para guardar los cambios.
+ * Tambi n muestra un bot n para cancelar la edici n del perfil
+ * y regresar a la pantalla de inicio.
+ *
+ * Si el usuario tiene un conductor favorito, el componente tambi n
+ * muestra una tarjeta con la informaci n del conductor favorito.
+ */
 const Profile = () => {
   const { t } = useTranslation("global");
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -43,14 +55,32 @@ const Profile = () => {
     return <Loader />;
   }
 
+  /**
+   * Handler para el bot n de editar el perfil del usuario.
+   * Al hacer clic en el bot n, se muestra el formulario para editar
+   * la informaci n del perfil del usuario.
+   */
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
+  /**
+   * Handler para el bot n de cancelar la edici n del perfil del usuario.
+   * Al hacer clic en el bot n, se oculta el formulario para editar
+   * la informaci n del perfil del usuario y se vuelve al estado
+   * original.
+   */
   const handleCancelClick = () => {
     setIsEditing(false);
   };
 
+  /**
+   * Handler para el bot n de guardar los cambios en el perfil del usuario.
+   * Al hacer clic en el bot n, se actualiza el perfil del usuario con los datos
+   * proporcionados y se oculta el formulario para editar la informaci n del
+   * perfil del usuario.
+   * @param {Object} updatedData - Los datos actualizados del perfil del usuario.
+   */
   const handleSave = (updatedData) => {
     setProfileData(updatedData);
     sessionStorage.setItem("userProfile", JSON.stringify(updatedData));

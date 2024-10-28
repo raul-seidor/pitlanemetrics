@@ -98,6 +98,14 @@ const news = [
   },
 ];
 
+/**
+ * Renders a paginated list of news articles with images, titles, descriptions, and dates.
+ * Utilizes Material-UI components to create a responsive grid layout.
+ * Users can navigate through pages of news using the pagination component.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered NewsComponent.
+ */
 export default function NewsComponent() {
   const { t } = useTranslation("global");
   const [page, setPage] = useState(1);

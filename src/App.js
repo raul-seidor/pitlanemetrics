@@ -18,6 +18,12 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { useTheme } from "./contexts/themeContexts";
 import Drivers from "./components/modules/drivers";
 
+/**
+ * The main app component, wraps the InnerApp component
+ * and adds a dark mode class to the root element if the theme is dark.
+ *
+ * @returns {React.ReactElement} The JSX element.
+ */
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
   const { theme } = useTheme();
@@ -33,6 +39,20 @@ const App = () => {
   );
 };
 
+/**
+ * The inner app component, this is the actual app router.
+ *
+ * Renders either the Layout or the GuestLayout component
+ * depending on the isAuthenticated prop.
+ *
+ * If isAuthenticated is true, it renders the Layout component
+ * and the routes for the home, championships, drivers, about and profile.
+ * If isAuthenticated is false, it renders the GuestLayout component
+ * and the routes for the public home and about.
+ *
+ * @param {boolean} isAuthenticated - If the user is authenticated or not.
+ * @returns {React.ReactElement} The JSX element.
+ */
 const InnerApp = ({ isAuthenticated }) => {
   const { theme } = useTheme();
 
@@ -47,7 +67,7 @@ const InnerApp = ({ isAuthenticated }) => {
 
   return (
     <MUIThemeProvider theme={muiTheme}>
-      <CssBaseline /> {/* Restablece estilos base */}
+      <CssBaseline />
       <Router>
         <Routes>
           {isAuthenticated ? (

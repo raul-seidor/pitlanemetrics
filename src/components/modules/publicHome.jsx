@@ -36,6 +36,13 @@ const ContentBox = styled(Box)({
   flexDirection: "column",
 });
 
+/**
+ * Component that renders the public home page. It displays a background image
+ * with a container that has a title, a subtitle, a description and a button
+ * to register/login.
+ *
+ * @returns {React.ReactElement} The public home page component.
+ */
 const PublicHome = () => {
   const { t } = useTranslation("global");
   const { loginWithRedirect } = useAuth0();

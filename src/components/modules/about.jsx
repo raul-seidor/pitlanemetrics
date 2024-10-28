@@ -3,6 +3,12 @@ import ContactForm from "../common/contactForm";
 import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
+/**
+ * Componente que muestra una p gina de informaci n acerca del sitio,
+ * con un t tulo, una descripci n y un formulario de contacto.
+ *
+ * @returns {JSX.Element}
+ */
 function About() {
   const { t } = useTranslation("global");
   return (

@@ -39,40 +39,71 @@ function Header() {
   const { t } = useTranslation("global");
   const navigate = useNavigate();
   const { user, isLoading, logout } = useAuth0();
-  const { theme, toggleTheme } = useTheme(); // Obtener la función para alternar tema
+  const { theme, toggleTheme } = useTheme();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
+  /**
+   * Opens the navigation menu by setting the anchor element to the one that triggered the event.
+   * @param {React.MouseEvent<HTMLElement>} event - The event that triggered the menu to open.
+   */
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+  /**
+   * Opens the user menu by setting the anchor element to the one that triggered the event.
+   * @param {React.MouseEvent<HTMLElement>} event - The event that triggered the menu to open.
+   */
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
+  /**
+   * Closes the navigation menu by setting the anchor element to null.
+   */
   const handleCloseNav = () => {
     setAnchorElNav(null);
   };
 
+  /**
+   * Closes the user menu by setting the anchor element to null.
+   */
   const handleCloseUser = () => {
     setAnchorElUser(null);
   };
 
+  /**
+   * Closes the navigation menu and navigates to the given path.
+   * @param {string} path - The path to navigate to.
+   * @returns {function} - A function that can be used as an event handler.
+   */
   const handleCloseNavMenu = (path) => () => {
     navigate(path);
     handleCloseNav();
   };
 
+  /**
+   * Closes the user menu and navigates to the given path.
+   * @param {string} path - The path to navigate to.
+   */
   const handleCloseUserMenu = (path) => {
     navigate(path);
     handleCloseUser();
   };
 
+  /**
+   * Navigates to the specified path.
+   * @param {string} path - The path to navigate to.
+   */
   const handleClick = (path) => {
     navigate(path);
   };
 
+  /**
+   * Clears the session storage and logs out the user using the Auth0 logout functionality.
+   * The user is redirected to the origin of the application.
+   */
   const logoutHandler = () => {
     sessionStorage.clear();
     logout({ logoutParams: { returnTo: window.location.origin } });

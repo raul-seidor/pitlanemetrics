@@ -11,11 +11,21 @@ import {
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
+/**
+ * Validate a phone number.
+ * @param {string} phone the phone number to validate
+ * @return {boolean} true if the phone is valid, false otherwise
+ */
 const validatePhone = (phone) => {
   const phoneRegex = /^[0-9]{9}$/;
   return phoneRegex.test(phone);
 };
 
+/**
+ * Validate a Spanish DNI.
+ * @param {string} dni the DNI to validate
+ * @return {boolean} true if the DNI is valid, false otherwise
+ */
 const validateDNI = (dni) => {
   const dniRegex = /^[0-9]{8}[A-Za-z]$/;
   if (!dniRegex.test(dni)) {
@@ -30,6 +40,13 @@ const validateDNI = (dni) => {
   return letter === correctLetter;
 };
 
+/**
+ * A form to contact with the web administrator.
+ * It will validate the phone number and the Spanish DNI.
+ * If the form is valid, it will show a success message.
+ * If the form is not valid, it will show an error message.
+ * @returns {React.ReactElement} The form.
+ */
 const ContactForm = () => {
   const { t } = useTranslation("global");
   const [formValues, setFormValues] = useState({
@@ -67,6 +84,10 @@ const ContactForm = () => {
     setIsFormValid(allFieldsFilled && noErrors);
   }, [formValues, errors]);
 
+  /**
+   * Handles a change in a form field.
+   * @param {React.ChangeEvent<HTMLInputElement>} e the event
+   */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
@@ -80,6 +101,13 @@ const ContactForm = () => {
     }
   };
 
+  /**
+   * Handles form submission.
+   * @param {React.FormEvent<HTMLFormElement>} e the event
+   * Prevents default form submission behavior.
+   * If the form is valid, displays a success snackbar message.
+   * If the form is invalid, displays an error snackbar message.
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormValid) {
@@ -94,6 +122,10 @@ const ContactForm = () => {
     }
   };
 
+  /**
+   * Handles closing the snackbar message.
+   * Resets the snackbar open state to false.
+   */
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
@@ -126,7 +158,7 @@ const ContactForm = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <TextField
-            inputRef={firstNameRef} // Se establece la referencia en este campo
+            inputRef={firstNameRef}
             label={t("firstName")}
             name="firstName"
             value={formValues.firstName}

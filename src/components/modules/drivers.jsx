@@ -7,6 +7,13 @@ import { useCookies } from "react-cookie";
 import { Alert, Snackbar, Typography, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
+/**
+ * Componente que muestra una lista de pilotos con sus respectivos equipos
+ * y colores. Permite seleccionar un piloto como favorito y mostrar notificaciones
+ * para informar al usuario de los cambios.
+ *
+ * @returns {React.ReactElement} Componente Drivers
+ */
 const Drivers = () => {
   const { t } = useTranslation("global");
   const [loading, setLoading] = useState(true);
@@ -17,6 +24,10 @@ const Drivers = () => {
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
   useEffect(() => {
+    /**
+     * Fetches driver information based on the provided session key and updates the state.
+     * Displays an error in the console if the request fails, and sets loading to false once complete.
+     */
     const getDriversInfo = async () => {
       try {
         const queryParams = { session_key: 9158 };
@@ -32,6 +43,14 @@ const Drivers = () => {
     getDriversInfo();
   }, []);
 
+  /**
+   * Toggles the favourite status of a driver. If the selected driver is different
+   * from the current favourite, updates the favouriteDriver cookie with the new
+   * driver. If the selected driver is already the favourite, removes the
+   * favouriteDriver cookie. Displays a success notification after updating.
+   *
+   * @param {Object} driver - The driver object to be toggled as favourite.
+   */
   const handleToggleFavourite = (driver) => {
     if (cookies.favouriteDriver) {
       const favouriteActual = cookies.favouriteDriver;
@@ -48,6 +67,9 @@ const Drivers = () => {
     setSnackbarOpen(true);
   };
 
+  /**
+   * Closes the snackbar message.
+   */
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
@@ -77,14 +99,7 @@ const Drivers = () => {
 
       <Grid container spacing={2} sx={{ paddingX: { md: "60px" } }}>
         {drivers.map((driver, index) => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={4}
-            lg={3}
-            key={index}
-          >
+          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
             <DriverCard
               img={driver.headshot_url}
               nombre={driver.full_name}
@@ -103,7 +118,6 @@ const Drivers = () => {
         ))}
       </Grid>
 
-      {/* Snackbar para notificaciones */}
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={6000}
