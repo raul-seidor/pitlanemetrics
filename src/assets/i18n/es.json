@@ -60,5 +60,6 @@
     "emailErrorRequired": "El email es requerido.",
     "emailErrorFormat": "El email no es válido.",
     "nameErrorRequired": "El nombre es requerido.",
-    "nicknameErrorRequired": "El apodo es requerido."
+    "nicknameErrorRequired": "El apodo es requerido.",
+    "getDataError": "Ha ocurrido un error al intentar obtener los datos."
 }

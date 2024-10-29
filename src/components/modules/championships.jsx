@@ -18,9 +18,9 @@ import { useTranslation } from "react-i18next";
 /**
  * Championships component
  *
- * Componente que renderiza la tabla de campeonatos de F1, tanto para pilotos como para constructores.
+ * Component that renders the F1 championships table for both drivers and constructors.
  *
- * @returns {JSX.Element} Componente JSX
+ * @returns {JSX.Element} JSX component
  */
 function Championships() {
   const { t } = useTranslation("global");
@@ -39,7 +39,7 @@ function Championships() {
         const result = await standingsDrivers(queryParams);
         setDriversChampionships(result.standings.entries);
       } catch (error) {
-        setError("Ha ocurrido un error al intentar obtener los datos.");
+        setError(t("getDataError"));
         setOpenSnackbar(true);
       } finally {
         setLoading(false);
@@ -53,7 +53,7 @@ function Championships() {
         const result = await standingsControllers(queryParams);
         setControllersChampionships(result.standings.entries);
       } catch (error) {
-        setError("Ha ocurrido un error al intentar obtener los datos.");
+        setError(t("getDataError"));
         setOpenSnackbar(true);
       } finally {
         setLoading(false);
@@ -62,7 +62,7 @@ function Championships() {
 
     getDataDrivers();
     getDataControllers();
-  }, []);
+  }, [t]);
 
   if (loading) return <Loader />;
 

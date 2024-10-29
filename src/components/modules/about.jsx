@@ -4,8 +4,8 @@ import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 /**
- * Componente que muestra una p gina de informaci n acerca del sitio,
- * con un t tulo, una descripci n y un formulario de contacto.
+ * Component that displays a page of information about the site,
+ * with a title, a description and a contact form.
  *
  * @returns {JSX.Element}
  */

@@ -8,11 +8,11 @@ import { Alert, Snackbar, Typography, Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 /**
- * Componente que muestra una lista de pilotos con sus respectivos equipos
- * y colores. Permite seleccionar un piloto como favorito y mostrar notificaciones
- * para informar al usuario de los cambios.
+ * Component showing a list of pilots with their respective teams and colours.
+ * and colours. Allows to select a driver as a favourite and to display notifications
+ * to inform the user of changes.
  *
- * @returns {React.ReactElement} Componente Drivers
+ * @returns {React.ReactElement} Drivers Component
  */
 const Drivers = () => {
   const { t } = useTranslation("global");
@@ -102,10 +102,10 @@ const Drivers = () => {
           <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
             <DriverCard
               img={driver.headshot_url}
-              nombre={driver.full_name}
-              equipo={driver.team_name}
-              colorEquipo={driver.team_colour}
-              numero={driver.driver_number}
+              name={driver.full_name}
+              team={driver.team_name}
+              teamColor={driver.team_colour}
+              number={driver.driver_number}
               onToggleFavourite={() => handleToggleFavourite(driver)}
               isFavourite={
                 cookies.favouriteDriver

@@ -60,5 +60,6 @@
     "emailErrorRequired": "Email is required.",
     "emailErrorFormat": "Email is not valid.",
     "nameErrorRequired": "Name is required.",
-    "nicknameErrorRequired": "Nickname is required."
+    "nicknameErrorRequired": "Nickname is required.",
+    "getDataError": "An error occurred while trying to get the data."
 }

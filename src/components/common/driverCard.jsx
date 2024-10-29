@@ -10,23 +10,23 @@ import { Box } from "@mui/system";
 const defaultImage = "images/user-avatar.png";
 
 /**
- * Componente que representa una tarjeta de piloto con su imagen, nombre, numero, equipo y color del equipo.
- * Ademas, permite marcar a un piloto como favorito con un boton de estrella.
+ * Component representing a driver card with their image, name, number, team, and team color.
+ * Also allows marking a driver as a favorite with a star button.
  *
- * @prop {string} img - Imagen del piloto.
- * @prop {string} nombre - Nombre del piloto.
- * @prop {string} equipo - Nombre del equipo.
- * @prop {string} colorEquipo - Color del equipo en formato hexadecimal.
- * @prop {number} numero - Numero del piloto.
- * @prop {function} onToggleFavourite - Funcion que se llama cuando se hace clic en el boton de favorito.
- * @prop {boolean} isFavourite - Si el piloto es favorito o no.
+ * @prop {string} img - Driver's image.
+ * @prop {string} name - Driver's name.
+ * @prop {string} team - Team name.
+ * @prop {string} teamColor - Team color in hexadecimal format.
+ * @prop {number} number - Driver's number.
+ * @prop {function} onToggleFavourite - Function called when the favorite button is clicked.
+ * @prop {boolean} isFavourite - Whether the driver is a favorite or not.
  */
 export default function DriverCard({
   img,
-  nombre,
-  equipo,
-  colorEquipo,
-  numero,
+  name,
+  team,
+  teamColor,
+  number,
   onToggleFavourite,
   isFavourite,
 }) {
@@ -36,7 +36,7 @@ export default function DriverCard({
         component="img"
         height="140"
         image={img ? img : defaultImage}
-        alt={`${nombre}`}
+        alt={`${name}`}
         sx={{ objectFit: "contain" }}
       />
       <CardContent>
@@ -47,8 +47,8 @@ export default function DriverCard({
             component="div"
             textAlign={"left"}
           >
-            {nombre}{" "}
-            <span style={{ fontSize: "0.9rem", color: "#888" }}>#{numero}</span>
+            {name}{" "}
+            <span style={{ fontSize: "0.9rem", color: "#888" }}>#{number}</span>
           </Typography>
           <IconButton
             onClick={onToggleFavourite}
@@ -62,13 +62,13 @@ export default function DriverCard({
             sx={{
               width: 15,
               height: 15,
-              backgroundColor: `#${colorEquipo}`,
+              backgroundColor: `#${teamColor}`,
               borderRadius: "50%",
               marginRight: 1,
             }}
           />
           <Typography variant="body2" color="text.secondary">
-            {equipo}
+            {team}
           </Typography>
         </Box>
       </CardContent>

@@ -16,16 +16,16 @@ import DriverCard from "../common/driverCard";
 import { useTranslation } from "react-i18next";
 
 /**
- * Componente que muestra la informaci n del perfil del usuario actual
- * en la pantalla de inicio de la aplicaci n.
+ * Component that displays the current user's profile information on the application's home screen.
+ * on the home screen of the application.
  *
- * El componente muestra un formulario para editar la informaci n
- * del perfil del usuario, y un bot n para guardar los cambios.
- * Tambi n muestra un bot n para cancelar la edici n del perfil
- * y regresar a la pantalla de inicio.
+ * The component displays a form for editing the user's profile information, and a button for saving changes.
+ * The component displays a form for editing the user's profile information, and a button for saving changes.
+ It also displays a button to cancel the editing of the profile and return to the * home screen.
+ * and return to the home screen.
  *
- * Si el usuario tiene un conductor favorito, el componente tambi n
- * muestra una tarjeta con la informaci n del conductor favorito.
+ If the user has a favourite driver, the component also * displays a card with the driver's information.
+ If the user has a favourite driver, the component also * displays a card with the favourite driver information.
  */
 const Profile = () => {
   const { t } = useTranslation("global");
@@ -56,18 +56,18 @@ const Profile = () => {
   }
 
   /**
-   * Handler para el bot n de editar el perfil del usuario.
-   * Al hacer clic en el bot n, se muestra el formulario para editar
-   * la informaci n del perfil del usuario.
+   * Handler for the button to edit the user's profile.
+   * When the button is clicked, the form for editing the user's profile information is displayed.
+   * The user's profile information.
    */
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
   /**
-   * Handler para el bot n de cancelar la edici n del perfil del usuario.
-   * Al hacer clic en el bot n, se oculta el formulario para editar
-   * la informaci n del perfil del usuario y se vuelve al estado
+   * Handler for the button to cancel editing the user's profile.
+   * Clicking the button hides the form for editing the user's profile information and returns to the state of the user profile.
+   * The user's profile information and returns to the original state.
    * original.
    */
   const handleCancelClick = () => {
@@ -75,11 +75,11 @@ const Profile = () => {
   };
 
   /**
-   * Handler para el bot n de guardar los cambios en el perfil del usuario.
-   * Al hacer clic en el bot n, se actualiza el perfil del usuario con los datos
-   * proporcionados y se oculta el formulario para editar la informaci n del
-   * perfil del usuario.
-   * @param {Object} updatedData - Los datos actualizados del perfil del usuario.
+   * Handler for the button to save changes to the user's profile.
+   * Clicking the button updates the user's profile with the provided data and hides the form for editing the user's information.
+   * The form for editing the user's profile information is hidden.
+   * user's profile.
+   * @param {Object} updatedData - The updated data in the user profile.
    */
   const handleSave = (updatedData) => {
     setProfileData(updatedData);
@@ -166,10 +166,10 @@ const Profile = () => {
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
                   <DriverCard
                     img={cookies.favouriteDriver.headshot_url}
-                    nombre={cookies.favouriteDriver.full_name}
-                    equipo={cookies.favouriteDriver.team_name}
-                    colorEquipo={cookies.favouriteDriver.team_colour}
-                    numero={cookies.favouriteDriver.driver_number}
+                    name={cookies.favouriteDriver.full_name}
+                    team={cookies.favouriteDriver.team_name}
+                    teamColor={cookies.favouriteDriver.team_colour}
+                    number={cookies.favouriteDriver.driver_number}
                     isFavourite={true}
                   />
                 </Box>
