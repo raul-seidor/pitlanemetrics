@@ -27,6 +27,7 @@ const pages = [
   { label: "home", path: "/" },
   { label: "championships", path: "/championships" },
   { label: "drivers", path: "/drivers" },
+  { label: "Drivers (RTK)", path: "/drivers-rtk" },
   { label: "about", path: "/about" },
 ];
 

@@ -17,6 +17,7 @@ import {
 import CssBaseline from "@mui/material/CssBaseline";
 import { useTheme } from "./contexts/themeContexts";
 import Drivers from "./components/modules/drivers";
+import DriversRTK from "./components/modules/driversRTK";
 
 /**
  * The main app component, wraps the InnerApp component
@@ -75,6 +76,7 @@ const InnerApp = ({ isAuthenticated }) => {
               <Route index element={<Home />} />
               <Route path="championships" element={<Championships />} />
               <Route path="drivers" element={<Drivers />} />
+              <Route path="drivers-rtk" element={<DriversRTK />} />
               <Route path="about" element={<About />} />
               <Route
                 path="profile"
