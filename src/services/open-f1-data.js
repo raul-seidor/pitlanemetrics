@@ -6,7 +6,7 @@ const API_URL = "https://api.openf1.org";
  * @param {Object<string, string>} queryParams - The query parameters to apply
  * @returns {Promise<Object>} - The response as a JSON object
  */
-export const driversInfo = async (queryParams) => {
+export const driversInfo = async (queryParams, options = {}) => {
   const url = new URL(`${API_URL}/v1/drivers`);
   url.search = new URLSearchParams(queryParams).toString();
 
@@ -16,6 +16,7 @@ export const driversInfo = async (queryParams) => {
       headers: {
         "Content-Type": "application/json",
       },
+      ...options,
     });
 
     if (!response.ok) {

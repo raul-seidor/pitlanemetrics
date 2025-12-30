@@ -32,15 +32,21 @@ function Championships() {
   const [selectedTab, setSelectedTab] = useState(0);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const getDataDrivers = async () => {
       try {
         const currentYear = new Date().getFullYear();
         const queryParams = { year: currentYear };
-        const result = await standingsDrivers(queryParams);
+        const result = await standingsDrivers(queryParams, {
+          signal: controller.signal
+        });
         setDriversChampionships(result.standings.entries);
       } catch (error) {
-        setError(t("getDataError"));
-        setOpenSnackbar(true);
+        if (error.name !== 'AbortError') {
+          setError(t("getDataError"));
+          setOpenSnackbar(true);
+        }
       } finally {
         setLoading(false);
       }
@@ -50,11 +56,15 @@ function Championships() {
       try {
         const currentYear = new Date().getFullYear();
         const queryParams = { year: currentYear };
-        const result = await standingsControllers(queryParams);
+        const result = await standingsControllers(queryParams, {
+          signal: controller.signal
+        });
         setControllersChampionships(result.standings.entries);
       } catch (error) {
-        setError(t("getDataError"));
-        setOpenSnackbar(true);
+        if (error.name !== 'AbortError') {
+          setError(t("getDataError"));
+          setOpenSnackbar(true);
+        }
       } finally {
         setLoading(false);
       }
@@ -62,6 +72,11 @@ function Championships() {
 
     getDataDrivers();
     getDataControllers();
+
+    // Cleanup function to abort requests if component unmounts
+    return () => {
+      controller.abort();
+    };
   }, [t]);
 
   if (loading) return <Loader />;

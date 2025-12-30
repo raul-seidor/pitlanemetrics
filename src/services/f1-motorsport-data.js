@@ -14,7 +14,7 @@ const xRapidapiKey = "a57c1eaf25mshea7a30f7254c13fp18d046jsn784d58cc5a74";
  * @returns {Promise<Object>} A promise that resolves to the driver standings data.
  * @throws Will throw an error if the network request fails or the response is not ok.
  */
-export const standingsDrivers = async (queryParams) => {
+export const standingsDrivers = async (queryParams, options = {}) => {
   const url = new URL(`${API_URL}/standings-drivers`);
   url.search = new URLSearchParams(queryParams).toString();
 
@@ -25,6 +25,7 @@ export const standingsDrivers = async (queryParams) => {
         "x-rapidapi-key": xRapidapiKey,
         "Content-Type": "application/json",
       },
+      ...options,
     });
 
     if (!response.ok) {
@@ -49,8 +50,8 @@ export const standingsDrivers = async (queryParams) => {
  * @returns {Promise<Object>} A promise that resolves to the controller standings data.
  * @throws Will throw an error if the network request fails or the response is not ok.
  */
-export const standingsControllers = async (queryParams) => {
-  const url = new URL(`${API_URL}/standings-controllers`);
+export const standingsControllers = async (queryParams, options = {}) => {
+  const url = new URL(`${API_URL}/standings-constructors`);
   url.search = new URLSearchParams(queryParams).toString();
 
   try {
@@ -60,6 +61,7 @@ export const standingsControllers = async (queryParams) => {
         "x-rapidapi-key": xRapidapiKey,
         "Content-Type": "application/json",
       },
+      ...options,
     });
 
     if (!response.ok) {

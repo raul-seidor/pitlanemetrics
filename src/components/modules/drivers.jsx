@@ -24,6 +24,8 @@ const Drivers = () => {
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
   useEffect(() => {
+    const controller = new AbortController();
+
     /**
      * Fetches driver information based on the provided session key and updates the state.
      * Displays an error in the console if the request fails, and sets loading to false once complete.
@@ -31,16 +33,25 @@ const Drivers = () => {
     const getDriversInfo = async () => {
       try {
         const queryParams = { session_key: 9158 };
-        const result = await driversInfo(queryParams);
+        const result = await driversInfo(queryParams, {
+          signal: controller.signal
+        });
         setDrivers(result);
       } catch (error) {
-        console.log(error);
+        if (error.name !== 'AbortError') {
+          console.log(error);
+        }
       } finally {
         setLoading(false);
       }
     };
 
     getDriversInfo();
+
+    // Cleanup function to abort request if component unmounts
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   /**
